@@ -1,3 +1,5 @@
+willN -- 2024-12-03 11:55
+* Updated README to include heading, roster, roles, preliminary headings for install guide and launch codes
 vedantK -- 2024-12-03 11:51
 * Created basic repo structure by creating all directories (static, templates, etc.)
 vedantK -- 2024-12-02 21:42
