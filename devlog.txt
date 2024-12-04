@@ -1,3 +1,5 @@
+vedantK -- 2024-12-04 11:06
+* Added install guide to readme file with two methods (main and alternate)
 willN -- 2024-12-03 11:55
 * Updated README to include heading, roster, roles, preliminary headings for install guide and launch codes
 vedantK -- 2024-12-03 11:51
