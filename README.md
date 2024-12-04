@@ -29,3 +29,7 @@ Activate a python virtual enviornment
 
 If you want to deactivate the environment, run 'deactivate' 
 
+When you have the virtual enviornment activated:
+1. Run '__init__.py' in the terminal
+2. Click the link that appears in the terminal.
+
