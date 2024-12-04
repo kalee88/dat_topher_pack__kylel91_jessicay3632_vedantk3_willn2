@@ -1,3 +1,5 @@
+kyleL -- 2024-12-04 11:19
+* Fixed formatting for the install guide
 vedantK -- 2024-12-04 11:06
 * Added install guide to readme file with two methods (main and alternate)
 kyleL, jessicaY -- 2024-12-03 11:55
