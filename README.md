@@ -22,14 +22,19 @@ We recommend to do this procedure using the Git Clone method. Click the green bu
 ### Alternate Method: 
 This is an alternate method, if you don't prefer the Git Clone method. Go to the green button in the top right again that says "Code". Then, click "Download Zip". Finally, extract the ZIP file from your downloads and place it in your desired directory. 
 ## Launch codes
+Open a terminal window and navigate to this project.
+  * Verify that your path looks something like ```~/.../dat_topher_pack_kylel91_jessicay3632_vedantk3_willn2$```
+  
 Activate a python virtual enviornment 
 1. Launch the terminal.
-2. Run 'python3 -m venv {path name}'
-3. Run '{path name}/bin/activate'
+2. If you do not already have one, run ```python3 -m venv {path name}``` to create a virtual environemnt
+3. Activate a venv
+    * macOS/Linux: `source {path_name}/bin/activate`
+    * Windows: `{path_name}\Scripts\activate`
 
 If you want to deactivate the environment, run 'deactivate' 
 
 When you have the virtual enviornment activated:
-1. Run '__init__.py' in the terminal
-2. Click the link that appears in the terminal.
+1. Run ```python3 __init__.py``` in the terminal
+2. Click the link that appears in the terminal to [127.0.0.1:5000](http://127.0.0.1:5000).
 
