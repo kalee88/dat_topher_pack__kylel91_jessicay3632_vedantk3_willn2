@@ -1,14 +1,20 @@
 vedantK -- 2024-12-04 11:06
 * Added install guide to readme file with two methods (main and alternate)
+
 willN -- 2024-12-03 11:55
 * Updated README to include heading, roster, roles, preliminary headings for install guide and launch codes
+
 vedantK -- 2024-12-03 11:51
 * Created basic repo structure by creating all directories including HTML skeleton files(static, templates, etc.)
+
 vedantK -- 2024-12-02 21:42
 * Updated Site Map on Design Doc
+
 willN -- 2024-12-02 20:07
 * Updated Design Doc to add the component interactions map and added wording changes to make more clear.
+
 vedantK -- 2024-11-26 11:42
 * Added Design Doc to Github repo
+
 kyleL, jessicaY
 * Created API keys for Europeana, GoogleFonts, SearchAPI and pinnacle odds. WeatherAPI did not have any API key system in play. Added API keys to Github repo
