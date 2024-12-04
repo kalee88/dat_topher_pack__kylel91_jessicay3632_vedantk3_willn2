@@ -22,4 +22,10 @@ We recommend to do this procedure using the Git Clone method. Click the green bu
 ### Alternate Method: 
 This is an alternate method, if you don't prefer the Git Clone method. Go to the green button in the top right again that says "Code". Then, click "Download Zip". Finally, extract the ZIP file from your downloads and place it in your desired directory. 
 ## Launch codes
-TBD
+Activate a python virtual enviornment 
+1. Launch the terminal.
+2. Run 'python3 -m venv {path name}'
+3. Run '{path name}/bin/activate'
+
+If you want to deactivate the environment, run 'deactivate' 
+
