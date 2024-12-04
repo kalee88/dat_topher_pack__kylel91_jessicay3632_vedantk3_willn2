@@ -1,3 +1,6 @@
+kyleL, jessicaY -- 2024-12-03 11:55
+* Created API keys for Europeana, GoogleFonts, SearchAPI and pinnacle odds. WeatherAPI did not have any API key system in play. Added API keys to Github repo
+
 vedantK -- 2024-12-04 11:06
 * Added install guide to readme file with two methods (main and alternate)
 
@@ -15,6 +18,3 @@ willN -- 2024-12-02 20:07
 
 vedantK -- 2024-11-26 11:42
 * Added Design Doc to Github repo
-
-kyleL, jessicaY
-* Created API keys for Europeana, GoogleFonts, SearchAPI and pinnacle odds. WeatherAPI did not have any API key system in play. Added API keys to Github repo
