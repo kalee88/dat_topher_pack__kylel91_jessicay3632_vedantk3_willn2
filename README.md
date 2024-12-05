@@ -16,7 +16,7 @@ Our project is essentially a news site, such as the New York Times, which displa
 ### Recommended Method: 
 We recommend to do this procedure using the Git Clone method. Click the green button in the top right that says "Code". Then, choose "SSH" in the dropdown that appears and copy the URL that is given. Finally, open up your terminal, cd into wherever you desire to hold the folder. Then, type 
 ```
-   git clone git@github.com:kalee88/dat_topher_pack__kylel91_jessicay3632_vedantk3_willn2.git
+$ git clone git@github.com:kalee88/dat_topher_pack__kylel91_jessicay3632_vedantk3_willn2.git
 ```
 
 ### Alternate Method: 
@@ -29,12 +29,12 @@ Open a terminal window and navigate to this project.
   
 Activate a python virtual enviornment (optional but recommended)
 1. Launch the terminal.
-2. If you do not already have one, run ```python3 -m venv {path name}``` to create a virtual environemnt
+2. If you do not already have one, run ```$ python3 -m venv {path name}``` to create a virtual environemnt
 3. Activate a venv
-    * macOS/Linux: `source {path_name}/bin/activate`
-    * Windows: `{path_name}\Scripts\activate`
+    * macOS/Linux: `$ source {path_name}/bin/activate`
+    * Windows: `$ {path_name}\Scripts\activate`
 
-If you want to deactivate the environment, run 'deactivate' 
+If you want to deactivate the environment, run ```$ deactivate``` 
 
 When you have the virtual enviornment activated:
 1. Run ```python3 __init__.py``` in the terminal
