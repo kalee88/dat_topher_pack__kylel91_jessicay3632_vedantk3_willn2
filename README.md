@@ -21,11 +21,13 @@ We recommend to do this procedure using the Git Clone method. Click the green bu
 
 ### Alternate Method: 
 This is an alternate method, if you don't prefer the Git Clone method. Go to the green button in the top right again that says "Code". Then, click "Download Zip". Finally, extract the ZIP file from your downloads and place it in your desired directory. 
+
+Reagardless of which method you choose, navigate to the repo folder and type ```$ pip install -r requirements.txt``` to install required dependencies
 ## Launch codes
 Open a terminal window and navigate to this project.
   * Verify that your path looks something like ```~/.../dat_topher_pack_kylel91_jessicay3632_vedantk3_willn2$```
   
-Activate a python virtual enviornment 
+Activate a python virtual enviornment (optional but recommended)
 1. Launch the terminal.
 2. If you do not already have one, run ```python3 -m venv {path name}``` to create a virtual environemnt
 3. Activate a venv
