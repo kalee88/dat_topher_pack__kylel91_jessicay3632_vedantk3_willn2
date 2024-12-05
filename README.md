@@ -1,4 +1,4 @@
-# datTopherPack
+# Topher's Tea By datTopherPack
 ## Roster and Roles:  
 |                                        | Kyle L.    | Jessica Y. |  Vedant K. | Will N.  |
 | -------------------------------------- | ---------- | ---------- | ---------- | -------- |
