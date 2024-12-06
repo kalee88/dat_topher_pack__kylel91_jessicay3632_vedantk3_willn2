@@ -2,7 +2,7 @@ import sqlite3
 import csv
 import os
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-import database
+#import database
 
 import urllib.request
 from urllib.request import Request
@@ -31,6 +31,7 @@ def googFonts(url,api_key):
     except requests.exceptions.RequestException as e:
         #Also here
         return None
+
 #Url - https://api.europeana.eu/...
 def Europeana(url,api_key):
     headers = {"Authorization": f"Bearer {api_key}"}
@@ -44,6 +45,7 @@ def Europeana(url,api_key):
     except requests.exceptions.RequestException as e:
         #Also here
         return None
+
 #Url???? - https://www.searchapi.io/api/v1/search \
 def searchAPI(url,api_key):
     headers = {"Authorization": f"Bearer {api_key}"}
@@ -57,6 +59,7 @@ def searchAPI(url,api_key):
     except requests.exceptions.RequestException as e:
         #Also here
         return None
+
 #URL - Idk
 def pinnacleOdds(url,api_key):
     headers = {"Authorization": f"Bearer {api_key}"}
@@ -83,17 +86,6 @@ def weatherData(long,lat):
     except requests.exceptions.RequestException as e:
         return None
 
-#No need for parameters as we don't need to hide our API keys
-def weatherData(long,lat):
-    url = f"https://api.weather.gov/points/{long},{lat}"
-    try:
-        response = response.get(url)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            return None
-    except requests.exceptions.RequestException as e:
-        return None
     
 app = Flask(__name__)    
 app.secret_key = os.urandom(32)
@@ -101,6 +93,14 @@ app.secret_key = os.urandom(32)
 @app.route("/")
 def home():
     return render_template('index.html')
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+        return render_template("login.html")
+
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
+        return render_template("signup.html")
 
 if __name__ == "__main__": 
     app.debug = True 
