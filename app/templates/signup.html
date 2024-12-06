@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title> Signup </title>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<section class="centered-login">
+    <h1 style="text-align: center;margin-bottom: 30px;">
+    Create an account!
+</h1>
+<form action="/signup" method="POST">
+    <label>
+        Username
+        <input type="text" name="username" placeholder="My Name" required>
+    </label><br>
+    <label>
+        Email
+        <input type="email" name="email" placeholder="address@example.com" required>
+    </label><br>
+    <label>
+        Password
+        <input type="password" name="password" required>
+    </label><br>
+    <label>
+        Confirm Password
+        <input type="password" name="confirm_password" required>
+    </label><br>
+    <button type="submit" name="sub1">Sign Up</button>
+    {% for error in message %}
+        <p style="text-align: center; color: red">{{ error }}</p>
+    {% endfor %}
+</form>
+<br>
+<h3 style="text-align: center">Already have an account? Log in <a href="/login">here</a></h3>
+<p style="text-align: center"> Or <a href="/">continue as guest</a></p>
+</section>
+</body>
+
+</html>
