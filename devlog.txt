@@ -1,3 +1,5 @@
+vedantK -- 2024-12-06 11:46
+* Finished html for login and signup and added logo to both pages
 willN -- 2024-12-06 11:46
 * Finished logo + created assets folder
 kyleL -- 2024-12-06 8:00
