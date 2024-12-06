@@ -70,6 +70,7 @@ def pinnacleOdds(url,api_key):
     except requests.exceptions.RequestException as e:
         #Also here
         return None
+
 #No need for parameters as we don't need to hide our API keys
 def weatherData(long,lat):
     url = f"https://api.weather.gov/points/{long},{lat}"
@@ -81,6 +82,11 @@ def weatherData(long,lat):
             return None
     except requests.exceptions.RequestException as e:
         return None
+
+#No need for parameters as we don't need to hide our API keys
+def weatherData():
+    url =
+>>>>>>> fc427c21638a6e5069619c323e0df5f65e9ab237
     
 app = Flask(__name__)    
 app.secret_key = os.urandom(32)

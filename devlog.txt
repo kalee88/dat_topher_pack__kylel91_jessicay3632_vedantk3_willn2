@@ -1,3 +1,7 @@
+kyleL -- 2024-12-06 8:00
+* Added functions to get responses for each API
+* Added a keys list which stores all the API keys while being hidden
+* Added some skeleton code for home.html page
 kyleL -- 2024-12-04 11:19
 * Fixed formatting for the install guide
 vedantK -- 2024-12-04 11:06
