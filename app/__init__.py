@@ -84,9 +84,16 @@ def weatherData(long,lat):
         return None
 
 #No need for parameters as we don't need to hide our API keys
-def weatherData():
-    url =
->>>>>>> fc427c21638a6e5069619c323e0df5f65e9ab237
+def weatherData(long,lat):
+    url = f"https://api.weather.gov/points/{long},{lat}"
+    try:
+        response = response.get(url)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return None
+    except requests.exceptions.RequestException as e:
+        return None
     
 app = Flask(__name__)    
 app.secret_key = os.urandom(32)
