@@ -71,6 +71,10 @@ def pinnacleOdds(url,api_key):
         #Also here
         return None
 
+#No need for parameters as we don't need to hide our API keys
+def weatherData():
+    url =
+    
 app = Flask(__name__)    
 app.secret_key = os.urandom(32)
 
