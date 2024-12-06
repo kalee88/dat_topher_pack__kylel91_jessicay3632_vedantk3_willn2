@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title> Login </title>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<section class="centered-login">
+<h1 style="text-align: center;margin-bottom: 50px;">
+    Welcome back!
+</h1>
+<form action="/login" method="POST">
+    <label>
+        Email
+        <input type="email" name="email" placeholder="name@example.com" required>
+    </label><br>
+    <label>
+        Password
+        <input type="password" name="password" placeholder="Your Password" required>
+    </label><br>
+    <button type="submit" name="sub1">Login</button>
+    <p style="text-align: center">{{ message }}</p>
+</form>
+<br>
+<h3 style="text-align: center">Don't have an account? Sign up <a href="/signup">here</a></h3>
+<p style="text-align: center"> Or <a href="/">continue as guest</a></p>
+</section>
+</body>
+
+</html>
