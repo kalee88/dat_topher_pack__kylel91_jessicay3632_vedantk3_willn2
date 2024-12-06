@@ -1,3 +1,5 @@
+willN -- 2024-12-06 11:46
+* Finished logo + created assets folder
 kyleL -- 2024-12-06 8:00
 * Added functions to get responses for each API
 * Added a keys list which stores all the API keys while being hidden
