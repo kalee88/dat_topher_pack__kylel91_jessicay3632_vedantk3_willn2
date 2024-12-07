@@ -1,3 +1,9 @@
+# Kyle Lee, Jessica Yu, Vedant Kothari, Will Nzeuton
+# Team datTopherPack
+# SoftDev
+# p01 
+# 2024-12-07
+
 import sqlite3
 import csv
 import os
