@@ -5,7 +5,8 @@
 | Set up Flask and SQLite3 environment   |    **X**   |            |            |   **X**  |
 | Build User Authentication Functionality|            |            |            |   **X**  |
 | API Configuration and Connections      |            |    **X**   |            |          |
-| Middleware configuration               |    **X**   |    **X**   |            |          |
+| Middleware file organization           |            |            |            |   **X**  |
+| Middleware creation (actual coding)    |    **X**   |    **X**   |            |          |
 | Build Database                         |            |            |            |   **X**  |
 | Frontend (HTML Templates)              |    **X**   |            |   **X**    |          |
 | Frontend (CSS + FEF)                   |            |            |   **X**    |          |
