@@ -1,3 +1,5 @@
+willN -- 2024-12-07 16:09
+* Created database intialization functions as well as helper functions: inser_user, modify_user, remove_user, user_column_to_id
 willN -- 2024-12-07 14:35
 * Added team heading to top of all source files
 * Added database, __pycache__, and DS_Store to .gitignore
