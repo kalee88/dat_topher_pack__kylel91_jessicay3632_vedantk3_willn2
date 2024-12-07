@@ -1,3 +1,12 @@
+willN -- 2024-12-07 14:35
+* Added team heading to top of all source files
+* Added database, __pycache__, and DS_Store to .gitignore
+* ! COMPLETE BACKEND FILE REORGANIZATION: !
+    * app/__init__.py has been stripped
+    * All routes (@app.route...) have been moved to app/routes (python package) which contains its own __init__.py to import routes from other files
+    * All utils (general python helper functions) have been moved to app/utils (python package) which contains several python files for organization
+    * app/__init__.py now IMPORTS routes as needed -- these routes should import app/utils helper functions
+    * Aim: separation of components and CLEAN CODE
 vedantK -- 2024-12-06 11:46
 * Finished html for login and signup and added logo to both pages
 willN -- 2024-12-06 11:46
