@@ -10,7 +10,7 @@ import os
 #Establish database file path
 DB_FILE = os.path.join(os.path.dirname(__file__), "../db.db")
 
-#Initializing functions
+#Initializing functions ---------------
 def create_tables(db):
     try:
         c = db.cursor()
@@ -55,7 +55,7 @@ def setup_db():
     db.commit()
     db.close()
 
-#External functions
+#External functions ---------------
 
 #Add row into users table
 def insert_user(username, password, email):
