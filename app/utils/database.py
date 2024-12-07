@@ -56,6 +56,8 @@ def setup_db():
     db.close()
 
 #External functions
+
+#Add row into users table
 def insert_user(username, password, email):
     db = sqlite3.connect(DB_FILE)
     try:
@@ -67,6 +69,7 @@ def insert_user(username, password, email):
     finally:
         c.close()
 
+#Edit existing row in users table
 def modify_user(id, type, new_value):
     #sql sanitation (sanitization?) 
     if type not in ['username', 'password', 'email']:
@@ -82,6 +85,7 @@ def modify_user(id, type, new_value):
         finally:
             c.close()
 
+#Remove row from users table
 def remove_user(id):
     db = sqlite3.connect(DB_FILE)
     try: 
@@ -93,6 +97,7 @@ def remove_user(id):
     finally:
         c.close()
 
+#Retrieve user id by username or email
 def user_column_to_id(type, value):
     res = -1
     if type not in ['username', 'email']:
