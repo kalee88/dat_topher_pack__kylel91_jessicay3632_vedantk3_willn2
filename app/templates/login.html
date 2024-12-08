@@ -17,6 +17,13 @@ p01
 <h1 style="text-align: center;margin-bottom: 50px;">
     Welcome back!
 </h1>
+{% with messages = get_flashed_messages()%}
+    {% if messages%}
+        {% for message in messages%}
+        <p>{{message}}</p>
+        {%endfor%}
+    {%endif%}
+{%endwith%}
 <form action="/login" method="POST">
     <label>
         Email

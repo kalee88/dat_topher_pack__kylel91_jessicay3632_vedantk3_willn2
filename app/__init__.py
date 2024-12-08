@@ -12,9 +12,10 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 app = Flask(__name__)    
 app.secret_key = os.urandom(32)
 
-from app.utils import *
-database.setup_db()
+from app.utils import database, auth
 
+database.setup_db()
+auth.insert_user('username', 'user@email.com', 'password')
 from app.routes import *
 
 if __name__ == "__main__": 

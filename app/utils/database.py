@@ -18,8 +18,8 @@ def create_tables(db):
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL UNIQUE COLLATE NOCASE,
-                password TEXT NOT NULL,
-                email TEXT NOT NULL UNIQUE COLLATE NOCASE
+                email TEXT NOT NULL UNIQUE COLLATE NOCASE,
+                password TEXT NOT NULL
             );
             ''')
         c.execute('''
@@ -33,7 +33,7 @@ def create_tables(db):
             ''')
         db.commit()
     except sqlite3.Error as e:
-        print(e)
+        print(f"create_table: {e}")
     finally:
         c.close()
 
@@ -56,18 +56,6 @@ def setup_db():
     db.close()
 
 #External functions ---------------
-
-#Add row into users table
-def insert_user(username, password, email):
-    db = sqlite3.connect(DB_FILE)
-    try:
-        c = db.cursor()
-        c.execute("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", (username, password, email))
-        db.commit()
-    except sqlite3.Error as e:
-        print(e)
-    finally:
-        c.close()
 
 #Edit existing row in users table
 def modify_user(id, type, new_value):
