@@ -1,87 +1,144 @@
 # Kyle Lee, Jessica Yu, Vedant Kothari, Will Nzeuton
 # Team datTopherPack
 # SoftDev
-# p01 
+# p01
 # 2024-12-07
+
 
 import urllib.request
 from urllib.request import Request
 from urllib.request import urlopen
 import json
+from dotenv import load_dotenv, dotenv_values
+import os
+load_dotenv()
 
-keys = ["key_Europeana.txt", "key_GoogleFonts.txt", "key_SearchAPI","key_pinnacleodds.txt"]
-for i in range(len(keys)):
-    file = open("..keys/" + keys[i], "r")
-    keys[i] = file.read()
-    file.close()
-keys = [key.strip() for key in keys]
+
+keys = [os.getenv("europeana_key"), os.getenv("googlefonts_key"), os.getenv("search_key"), os.getenv("pinnacleodds_key")]
+
 
 #Just use keys list to access api_key
 #We can try to handle the responses with other functions, these just get the response
-#URL - https://www.googleapis.com/webfonts/v1/webfonts?key=YOUR-API-KEY
-def googFonts(url,api_key):
-    headers = {"Authorization": f"Bearer {api_key}"}
-    try:
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            return response.json() 
-        else:
-            #We can put some error message here
-            return None
-    except requests.exceptions.RequestException as e:
-        #Also here
-        return None
+def googFonts(font):
+   url = f"https://www.googleapis.com/webfonts/v1/webfonts?key="
+   api_key = os.getenv("googlefonts_key")
+   headers = {"Authorization": f"Bearer {api_key}"}
+   try:
+       response = requests.get(url, headers=headers)
+       if response.status_code == 200:
+           fonts_data = response.txt
+           response_json = json.loads(fonts_data)
+           return [response_json_json['kind'],
+                   response_json['family'],
+                   response_json['subsets'],
+                   response_json['menu'],
+                   response_json['variants'],
+                   response_json['version'],
+                   response_json['axes'],
+                   response_json['lastModified'],
+                   response_json['files']
+           ]
+       else:
+           print(f'Failed to retrieve data {response.status_code}')
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
 
-#Url - https://api.europeana.eu/...
-def Europeana(url,api_key):
-    headers = {"Authorization": f"Bearer {api_key}"}
-    try:
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            return response.json() 
-        else:
-            #We can put some error message here
-            return None
-    except requests.exceptions.RequestException as e:
-        #Also here
-        return None
 
-#Url???? - https://www.searchapi.io/api/v1/search \
-def searchAPI(url,api_key):
-    headers = {"Authorization": f"Bearer {api_key}"}
-    try:
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            return response.json() 
-        else:
-            #We can put some error message here
-            return None
-    except requests.exceptions.RequestException as e:
-        #Also here
-        return None
+def Europeana():
+   url = f"https://api.europeana.eu/"
+   api_key = os.getenv("europeana_key")
+   headers = {"Authorization": f"Bearer {api_key}"}
+   try:
+       response = requests.get(url, headers=headers)
+       if response.status_code == 200:
+           art_data = response.txt
+           response_json = json.loads(art_data)
+           return [response_json['set_id'],
+                   response_json['creator'],
+                   response_json['contributor'],
+                   response_json['visibility'],
+                   response_json['type'],
+                   response_json['item'],
+                   response_json['subject']
+           ]
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
 
-#URL - Idk
-def pinnacleOdds(url,api_key):
-    headers = {"Authorization": f"Bearer {api_key}"}
-    try:
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            return response.json() 
-        else:
-            #We can put some error message here
-            return None
-    except requests.exceptions.RequestException as e:
-        #Also here
-        return None
 
-#No need for parameters as we don't need to hide our API keys
+# Couldn't find all the fields for this dictionary
+def searchAPI():
+   url = f"https://www.searchapi.io/api/v1/search?api_key="
+   api_key = os.getenv("search_key")
+   headers = {"Authorization": f"Bearer {api_key}"}
+   try:
+       response = requests.get(url, headers=headers)
+       if response.status_code == 200:
+           search_data = response.json()
+           return search_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+
+def pinnacleOdds():
+   url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/special-markets"
+   api_key = os.getenv("pinnacleodds_key")
+   headers = {
+   "x-rapidapi-key": {api_key},
+   "x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+   }
+   try:
+       response = requests.get(url, headers=headers)
+       if response.status_code == 200:
+           sports_data = response.txt
+           sports_json = json.loads(sport_data)
+           return [sports_json['sports_id'],
+                   sports_json['sport_name'],
+                   sports_json['last'],
+                   sports_json['events'],
+                   sports_json['event_id'],
+                   sports_json['league_id'],
+                   sports_json['league_name'],
+                   sports_json['starts'],
+                   sports_json['last'],
+                   sports_json['home']
+           ]
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+
 def weatherData(long,lat):
-    url = f"https://api.weather.gov/points/{long},{lat}"
-    try:
-        response = response.get(url)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            return None
-    except requests.exceptions.RequestException as e:
-        return None
+   url = f"https://api.weather.gov/points/{long},{lat}"
+   try:
+       response = response.get(url)
+       if response.status_code == 200:
+           weather_data = response.txt
+           weather_json = json.loads(weather_data)
+           return [weather_json['city'],
+                   weather_json['state'],
+                   weather_json['distance'],
+                   weather_json['id'],
+                   weather_json['type'],
+                   weather_json['gridX'],
+                   weather_json['gridY'],
+                   weather_json['relativeLocation'],
+                   weather_json['bearing'],
+                   weather_json['unitCode'],
+                   weather_json['forecast'],
+                   weather_json['forecastHourly'],
+                   weather_json['forecastGridData'],
+                   weather_json['observationStations']
+           ]
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       return None

@@ -1,3 +1,8 @@
+jessicaY -- 2024-12-08 17:09
+* Created .env file to hide the API keys 
+* Added urls so APIs can be accessed 
+* Added print messages and created lists for json responses
+* Added info in readme for keys
 willN -- 2024-12-08 15:40
 * Created logout route
 * Added user sessions
@@ -24,6 +29,8 @@ kyleL -- 2024-12-06 8:00
 * Added some skeleton code for home.html page
 kyleL -- 2024-12-04 11:19
 * Fixed formatting for the install guide
+jessicaY -- 20224-12-05 11:44
+* Added a launch code guide
 vedantK -- 2024-12-04 11:06
 * Added install guide to readme file with two methods (main and alternate)
 kyleL, jessicaY -- 2024-12-03 11:55
