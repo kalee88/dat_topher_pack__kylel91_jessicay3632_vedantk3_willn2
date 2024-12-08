@@ -17,6 +17,8 @@ def login():
 
             if(auth.user_exists(email, "email")):
                     if(auth.email_password_match(email, password)):
+                                session['user'] = auth.fetch_user(auth.user_column_to_id(email, "email"))
+                                print(session['user'])
                                 return redirect(url_for('home'))
                     else:
                             flash("Incorrect password")
@@ -59,3 +61,9 @@ def signup():
                     return render_template('signup.html')
     else:
             return render_template("signup.html")
+    
+@app.route("/logout", methods=['GET', 'POST'])
+def logout():
+	if(auth.is_logged_in()):
+		session.pop('user')
+	return redirect(url_for('home'))

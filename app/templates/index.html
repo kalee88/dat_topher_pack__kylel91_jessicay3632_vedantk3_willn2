@@ -19,6 +19,12 @@ p01
 <body>
   
     <h1>                    </h1>
+    
+    {% if is_logged_in %}
+    <p>Logged in as {{logged_in_user[1]}} ({{logged_in_user[2]}})</p>
+    {% else %}
+    <p>Browing as guest</p>
+    {% endif %}
     <div class='main'>
  
         <form action="/signup" method="get">

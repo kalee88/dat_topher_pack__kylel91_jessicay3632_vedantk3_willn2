@@ -5,6 +5,7 @@
 # 2024-12-07
 import os
 import sqlite3
+from flask import session
 
 DB_FILE = os.path.join(os.path.dirname(__file__), "../db.db")
 
@@ -49,3 +50,38 @@ def insert_user(username, email, password):
         return -1
     finally:
         c.close()
+
+#Retrieve user id by username or email
+def user_column_to_id(value, type):
+    res = -1
+    if type not in ['username', 'email']:
+        return -2
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute(f"SELECT id FROM users WHERE {type} = ?", (value,))
+        res = c.fetchone()[0]
+        db.commit()
+    except sqlite3.Error as e:
+        print(e)
+    finally:
+        c.close()
+        return res
+    
+def fetch_user(id):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("SELECT * FROM users WHERE id = ?", (id,))
+        user = c.fetchone()
+    except sqlite3.Error as e:
+        print(f"fetch_user: {e}")
+    finally:
+        c.close()
+        return user
+    
+def is_logged_in():
+    return 'user' in session
+
+def get_logged_in_user():
+    return session.get('user', None)
