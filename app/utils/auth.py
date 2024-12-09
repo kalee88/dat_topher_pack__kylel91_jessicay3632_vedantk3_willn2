@@ -39,18 +39,6 @@ def user_exists(value, type):
     finally:
         c.close()
 
-#Add row into users table
-def insert_user(username, email, password):
-    db = sqlite3.connect(DB_FILE)
-    try:
-        c = db.cursor()
-        c.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, password))
-        db.commit()
-    except sqlite3.IntegrityError:
-        return -1
-    finally:
-        c.close()
-
 #Retrieve user id by username or email
 def user_column_to_id(value, type):
     res = -1
@@ -67,18 +55,6 @@ def user_column_to_id(value, type):
     finally:
         c.close()
         return res
-    
-def fetch_user(id):
-    db = sqlite3.connect(DB_FILE)
-    try:
-        c = db.cursor()
-        c.execute("SELECT * FROM users WHERE id = ?", (id,))
-        user = c.fetchone()
-    except sqlite3.Error as e:
-        print(f"fetch_user: {e}")
-    finally:
-        c.close()
-        return user
     
 def is_logged_in():
     return 'user' in session

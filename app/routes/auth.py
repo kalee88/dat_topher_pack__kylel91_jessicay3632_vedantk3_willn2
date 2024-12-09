@@ -6,7 +6,7 @@
 
 from flask import render_template, request, redirect, url_for, flash, session
 from app import app
-from app.utils import auth
+from app.utils import auth, database
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -17,7 +17,7 @@ def login():
 
             if(auth.user_exists(email, "email")):
                     if(auth.email_password_match(email, password)):
-                                session['user'] = auth.fetch_user(auth.user_column_to_id(email, "email"))
+                                session['user'] = database.read_user(auth.user_column_to_id(email, "email"))
                                 print(session['user'])
                                 return redirect(url_for('home'))
                     else:
@@ -38,6 +38,7 @@ def signup():
             confirm_password = request.form['confirm_password']
 
             is_error = False
+            
             if(not auth.is_valid_username(username)):
                     flash("Username shouldn't contain spaces or special characters")
                     is_error = True
@@ -53,8 +54,9 @@ def signup():
             if(password != confirm_password):
                     flash("Passwords don't match")
                     is_error = True
+                    
             if(not is_error):
-                    auth.insert_user(username, email, password)
+                    database.create_user(username, email, password)
                     flash("Succesfully created account! Redirected to login")
                     return redirect(url_for('login'))
             else:

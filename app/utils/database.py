@@ -10,7 +10,7 @@ import os
 #Establish database file path
 DB_FILE = os.path.join(os.path.dirname(__file__), "../db.db")
 
-#Initializing functions ---------------
+# --------------- Initializing functions ---------------
 def create_tables(db):
     try:
         c = db.cursor()
@@ -55,10 +55,34 @@ def setup_db():
     db.commit()
     db.close()
 
-#External functions ---------------
+# --------------- Operational Functions ---------------
 
-#Edit existing row in users table
-def modify_user(id, type, new_value):
+# ----- users Functions -----
+
+def create_user(username, email, password):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, password))
+        db.commit()
+    except sqlite3.IntegrityError:
+        return -1
+    finally:
+        c.close()
+
+def read_user(id):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("SELECT * FROM users WHERE id = ?", (id,))
+        user = c.fetchone()
+    except sqlite3.Error as e:
+        print(f"fetch_user: {e}")
+    finally:
+        c.close()
+        return user
+    
+def update_user(id, type, new_value):
     #sql sanitation (sanitization?) 
     if type not in ['username', 'password', 'email']:
         print("Invalid column type")
@@ -73,8 +97,7 @@ def modify_user(id, type, new_value):
         finally:
             c.close()
 
-#Remove row from users table
-def remove_user(id):
+def delete_user(id):
     db = sqlite3.connect(DB_FILE)
     try: 
         c = db.cursor()
@@ -84,5 +107,4 @@ def remove_user(id):
         print(e)
     finally:
         c.close()
-
 
