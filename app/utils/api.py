@@ -72,8 +72,12 @@ def searchAPI():
    url = f"https://www.searchapi.io/api/v1/search?api_key="
    api_key = os.getenv("search_key")
    headers = {"Authorization": f"Bearer {api_key}"}
+   params = {
+     "engine": "google",
+     "q": "chatgpt"
+   }
    try:
-       response = requests.get(url, headers=headers)
+       response = requests.get(url, headers=headers, params=params)
        if response.status_code == 200:
            search_data = response.json()
            return search_data
