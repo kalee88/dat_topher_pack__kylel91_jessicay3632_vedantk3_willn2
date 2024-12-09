@@ -39,7 +39,7 @@ Activate dotenv
 1. Launch the terminal.
 2. Cd into ```~/.../dat_topher_pack_kylel91_jessicay3632_vedantk3_willn2/app/utils$```
 3. Run ```$ pip install python-dotenv``` in the terminal.
-4. Create an env file and add API keys.
+4. Create an env file and add API keys (stored locally).
 
 If you want to deactivate the environment, run ```$ deactivate``` 
 
