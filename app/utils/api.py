@@ -13,11 +13,9 @@ from dotenv import load_dotenv, dotenv_values
 import os
 load_dotenv()
 
-
+#env file is stored locally
 keys = [os.getenv("europeana_key"), os.getenv("googlefonts_key"), os.getenv("search_key"), os.getenv("pinnacleodds_key")]
 
-
-#Just use keys list to access api_key
 #We can try to handle the responses with other functions, these just get the response
 def googFonts(font):
    url = f"https://www.googleapis.com/webfonts/v1/webfonts?key="
