@@ -44,6 +44,6 @@ Activate dotenv
 If you want to deactivate the environment, run ```$ deactivate``` 
 
 When you have the virtual enviornment activated:
-1. Run ```$ python3 -m app.__init__``` in the terminal
+1. Run ```$ python3 -m app.__init__``` in the terminal (OUTSIDE of /app)
 2. Click the link that appears in the terminal to [127.0.0.1:5000](http://127.0.0.1:5000).
 
