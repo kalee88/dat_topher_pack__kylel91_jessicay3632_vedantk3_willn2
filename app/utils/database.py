@@ -1,12 +1,12 @@
 # Kyle Lee, Jessica Yu, Vedant Kothari, Will Nzeuton
 # Team datTopherPack
 # SoftDev
-# p01 
+# p01
 # 2024-12-07
 
 import sqlite3
 import os
-
+from .auth import password_hash
 #Establish database file path
 DB_FILE = os.path.join(os.path.dirname(__file__), "../db.db")
 
@@ -63,7 +63,7 @@ def create_user(username, email, password):
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
-        c.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, password))
+        c.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, password_hash(password)[0]))
         db.commit()
     except sqlite3.IntegrityError:
         return -1
@@ -81,9 +81,9 @@ def read_user(id):
     finally:
         c.close()
         return user
-    
+
 def update_user(id, type, new_value):
-    #sql sanitation (sanitization?) 
+    #sql sanitation (sanitization?)
     if type not in ['username', 'password', 'email']:
         print("Invalid column type")
     else:
@@ -99,7 +99,7 @@ def update_user(id, type, new_value):
 
 def delete_user(id):
     db = sqlite3.connect(DB_FILE)
-    try: 
+    try:
         c = db.cursor()
         c.execute("DELETE FROM users WHERE id = ?", (id,))
         db.commit()
@@ -107,4 +107,3 @@ def delete_user(id):
         print(e)
     finally:
         c.close()
-
