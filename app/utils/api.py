@@ -26,7 +26,7 @@ def googFonts(font):
        if response.status_code == 200:
            fonts_data = response.txt
            response_json = json.loads(fonts_data)
-           return [response_json_json['kind'],
+           return [response_json['kind'],
                    response_json['family'],
                    response_json['subsets'],
                    response_json['menu'],
@@ -44,7 +44,7 @@ def googFonts(font):
 
 
 def Europeana():
-   url = f"https://api.europeana.eu/"
+   url = f"https://api.europeana.eu/record/v2/search.json?query=Vermeer&wskey="
    api_key = os.getenv("europeana_key")
    headers = {"Authorization": f"Bearer {api_key}"}
    try:
@@ -73,8 +73,8 @@ def searchAPI():
    api_key = os.getenv("search_key")
    headers = {"Authorization": f"Bearer {api_key}"}
    params = {
-     "engine": "google",
-     "q": "chatgpt"
+     "engine": "google"
+     "q": {search}
    }
    try:
        response = requests.get(url, headers=headers, params=params)
@@ -91,6 +91,11 @@ def searchAPI():
 def pinnacleOdds():
    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/special-markets"
    api_key = os.getenv("pinnacleodds_key")
+   querystring = {
+    "sport_id": {sid},
+    "is_have_odds": {odds},
+    "event_id": {eid}
+    }
    headers = {
    "x-rapidapi-key": {api_key},
    "x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
@@ -118,7 +123,7 @@ def pinnacleOdds():
        return None
 
 
-def weatherData(long,lat):
+def nationalWeatherService(long,lat):
    url = f"https://api.weather.gov/points/{long},{lat}"
    try:
        response = response.get(url)
@@ -144,3 +149,4 @@ def weatherData(long,lat):
            print(f"Failed to retrieve data {response.status_code}")
    except requests.exceptions.RequestException as e:
        return None
+
