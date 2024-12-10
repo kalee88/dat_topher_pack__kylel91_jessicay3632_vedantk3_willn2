@@ -1,5 +1,6 @@
 Contents of current .env file (will be deleted later) 
 
+
 europeana_key = chstenterbi
 
 
