@@ -1,3 +1,5 @@
+kyleL -- 2024-12-10 7:56
+* Added routing on all pages
 jessicaY -- 2024-12-09 11:38
 * Updated Keys readme
 * Added guide for launching dotenv
