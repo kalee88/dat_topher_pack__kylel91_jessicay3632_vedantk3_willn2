@@ -1,5 +1,7 @@
 kyleL -- 2024-12-10 7:56
 * Added routing on all pages
+vedantK -- 2024-12-10 11:47
+* Added CSS to center logo on login and signup pages
 willN -- 2024-12-09 11:47
 * Added password encryption
 jessicaY -- 2024-12-09 11:38
