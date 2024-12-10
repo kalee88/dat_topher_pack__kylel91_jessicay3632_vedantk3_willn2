@@ -2,17 +2,105 @@
 Kyle Lee, Jessica Yu, Vedant Kothari, Will Nzeuton
 Team datTopherPack
 SoftDev
-p01 
-2024-12-07 
+p01
+2024-12-07
 -->
 
 <html>
-<head>  
+<head>
+    <style>
+    <!--Navbar-->
+    .subnav-hero-section {
+    text-align: center;
+    background: #1779ba;
+    background-size: cover;
+    position: relative;
+    overflow: visible;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 300px;
+    }
+
+    .subnav-hero-section .subnav-hero-headline {
+    color: #fefefe;
+    }
+
+    .subnav-hero-subnav {
+    float: none;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    bottom: 0;
+    width: 100%;
+    }
+
+    .subnav-hero-subnav li {
+    float: none;
+    display: inline-block;
+    }
+
+    .subnav-hero-subnav li a {
+    padding: 0.9rem 1rem;
+    font-size: 0.75rem;
+    color: #fefefe;
+    text-transform: uppercase;
+    display: block;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.35s ease-in-out;
+    }
+
+    .subnav-hero-subnav li a.is-active {
+    background: rgba(254, 254, 254, 0.15);
+    }
+
+    .subnav-hero-subnav li a:hover {
+    background: rgba(254, 254, 254, 0.15);
+    }
+
+
+    img.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+    }
+    h1 {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: normal;
+    }
+    h3 {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: normal;
+    }
+    button {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: normal;
+
+    }
+    </style>
     <title> Login </title>
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<img src="static/assets/logo.jpg">
+  <header class="subnav-hero-section">
+    <h1 class="subnav-hero-headline">Foundation <small>by ZURB</small></h1>
+    <ul class="subnav-hero-subnav">
+      <li><a href="#">Take Action!</a></li>
+      <li><a href="#" class="is-active">Carpe Diem!</a></li>
+      <li><a target="_blank" href="https://zurb.com/responsive">Just do it!</a></li>
+    </ul>
+  </header>
+<img class="logo" src="static/assets/logo.jpg">
 <section class="centered-login">
 <h1 style="text-align: center;margin-bottom: 50px;">
     Welcome back!
@@ -26,13 +114,14 @@ p01
 {%endwith%}
 <form action="/login" method="POST">
     <label>
-        Email
+        <h3>Email</h3>
         <input type="email" name="email" placeholder="name@example.com" required>
     </label><br>
     <label>
-        Password
+        <h3>Password</h3>
         <input type="password" name="password" placeholder="Your Password" required>
     </label><br>
+    <h3> </h3>
     <button type="submit" name="sub1">Login</button>
     <p style="text-align: center">{{ message }}</p>
 </form>
