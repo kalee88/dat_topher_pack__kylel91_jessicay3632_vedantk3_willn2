@@ -1,3 +1,5 @@
+willN -- 2024-12-09 11:47
+* Added password encryption
 jessicaY -- 2024-12-09 11:38
 * Updated Keys readme
 * Added guide for launching dotenv
