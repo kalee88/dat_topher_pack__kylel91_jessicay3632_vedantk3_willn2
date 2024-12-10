@@ -6,7 +6,7 @@
 
 import sqlite3
 import os
-from .auth import password_hash
+from .auth import password_hash, user_exists
 #Establish database file path
 DB_FILE = os.path.join(os.path.dirname(__file__), "../db.db")
 
@@ -44,7 +44,7 @@ def drop_tables(db):
         c.execute("DROP TABLE IF EXISTS favorites")
         db.commit()
     except sqlite3.Error as e:
-        print(e)
+        print(f"drop_tables: {e}")
     finally:
         c.close()
 
@@ -66,7 +66,7 @@ def create_user(username, email, password):
         c.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, password_hash(password)[0]))
         db.commit()
     except sqlite3.IntegrityError:
-        return -1
+        print(f"create_user: {e}")
     finally:
         c.close()
 
@@ -93,7 +93,7 @@ def update_user(id, type, new_value):
             c.execute(f"UPDATE users SET {type} = ? WHERE id = ?", (new_value, id))
             db.commit()
         except sqlite3.Error as e:
-            print(e)
+            print(f"update_user: {e}")
         finally:
             c.close()
 
@@ -104,6 +104,25 @@ def delete_user(id):
         c.execute("DELETE FROM users WHERE id = ?", (id,))
         db.commit()
     except sqlite3.Error as e:
-        print(e)
+        print(f"delete_user: {e}"")
     finally:
         c.close()
+
+# ----- favorites Functions -----
+
+def create_favorite(user_id, content_type, metadata, created_at):
+    valid_types = ["story", "art", "sport"]
+    if(not user_exists(user_id)):
+        raise KeyError(f"Could not locate user with id: {user_id}")
+    if(content_type not in valid_types):
+        raise KeyError(f"{contet_type} is not a valid content type")
+    else:
+        db = sqlite3.connect(DB_FILE)
+        try:
+            c = db.cursor()
+            c.execute("INSERT INTO favorites (user_id, content_type, metadata, created_at) VALUES (?, ?, ?, ?)", (user_id, content_type, metadata, created_at))
+            db.commit()
+        except sqlite3.Error:
+            print(f"create_favorite: {e}")
+        finally:
+            c.close()

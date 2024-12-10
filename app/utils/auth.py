@@ -44,7 +44,7 @@ def user_exists(value, type):
 def user_column_to_id(value, type):
     res = -1
     if type not in ['username', 'email']:
-        return -2
+        raise KeyError(f"{type} is not a valid column type of user_column_to_id")
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
@@ -52,7 +52,7 @@ def user_column_to_id(value, type):
         res = c.fetchone()[0]
         db.commit()
     except sqlite3.Error as e:
-        print(e)
+        print(f"user_column_to_id: {e}")
     finally:
         c.close()
         return res
@@ -62,7 +62,6 @@ def is_logged_in():
 
 def get_logged_in_user():
     return session.get('user', None)
-
 
 def password_hash(password):
     salt = bcrypt.gensalt()
