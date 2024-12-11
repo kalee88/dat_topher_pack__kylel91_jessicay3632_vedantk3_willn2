@@ -1,3 +1,5 @@
+vedantK -- 2024-12-10 11:47
+* Added CSS and a Google Font for login page
 willN -- 2024-12-10 11:47
 * Began favorites work, updating some existing db functions
 jessicaY -- 2024-12-10 11:41
