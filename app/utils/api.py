@@ -43,22 +43,22 @@ def googFonts(font):
        return None
 
 
-def Europeana():
-   url = f"https://api.europeana.eu/record/v2/search.json?query=Vermeer&wskey="
+def searchEuro(query):
    api_key = os.getenv("europeana_key")
+   url = f"https://api.europeana.eu/record/v2/search.json?query" + query + f"&wskey:" + api_key
    headers = {"Authorization": f"Bearer {api_key}"}
    try:
        response = requests.get(url, headers=headers)
        if response.status_code == 200:
            art_data = response.txt
            response_json = json.loads(art_data)
-           return [response_json['set_id'],
-                   response_json['creator'],
-                   response_json['contributor'],
-                   response_json['visibility'],
-                   response_json['type'],
-                   response_json['item'],
-                   response_json['subject']
+           return [response_json['title'],
+                   response_json['subject'],
+                   response_json['what'],
+                   response_json['when'],
+                   response_json['where'],
+                   response_json['who'],
+                   response_json['text']
            ]
        else:
            print(f"Failed to retrieve data {response.status_code}")
@@ -66,10 +66,56 @@ def Europeana():
        #Also here
        return None
 
+def dataEuro(entity_type, entity_id):
+    url = f"http://data.europeana.eu/" + entity_type + f"/" + entity_id
+    api_key = os.getenv("europeana_key")
+    headers = {"Authorization": f"Bearer {api_key}"}
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            art_data = response.txt
+            response_json = json.loads(art_data)
+            return [response_json['id'],
+                    response_json['type'],
+                    response_json['proxyFor'],
+                    response_json['proxyln'],
+                    response_json['created'],
+                    response_json['modified'],
+                    response_json['rights']
+                    response_json['source']
+            ]
+        else:
+            print(f"Failed to retrieve data {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        #Also here
+        return None
+
+def recommendEuro(set_id):
+    url = f"https://api.europeana.eu/recommend/set/" + set_id
+    api_key = os.getenv("europeana_key")
+    headers = {"Authorization": f"Bearer {api_key}"}
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            art_data = response.txt
+            response_json = json.loads(art_data)
+            return [response_json['title'],
+                    response_json['subject'],
+                    response_json['what'],
+                    response_json['when'],
+                    response_json['where'],
+                    response_json['who'],
+                    response_json['text']
+            ]
+        else:
+            print(f"Failed to retrieve data {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        #Also here
+        return None
 
 # Couldn't find all the fields for this dictionary
 def searchAPI():
-   url = f"https://www.searchapi.io/api/v1/search?api_key="
+   url = f"https://www.searchapi.io/api/v1/search?apihttps://api.europeana.eu/record/v2/[_key="
    api_key = os.getenv("search_key")
    headers = {"Authorization": f"Bearer {api_key}"}
    params = {
@@ -149,4 +195,3 @@ def nationalWeatherService(long,lat):
            print(f"Failed to retrieve data {response.status_code}")
    except requests.exceptions.RequestException as e:
        return None
-
