@@ -2,8 +2,8 @@
 Kyle Lee, Jessica Yu, Vedant Kothari, Will Nzeuton
 Team datTopherPack
 SoftDev
-p01 
-2024-12-07 
+p01
+2024-12-07
 -->
 
 <!DOCTYPE html>
@@ -17,58 +17,58 @@ p01
 </head>
 
 <body>
-  
+
     <h1>                    </h1>
-    
+
     {% if is_logged_in %}
     <p>Logged in as {{logged_in_user[1]}} ({{logged_in_user[2]}})</p>
     {% else %}
     <p>Browing as guest</p>
     {% endif %}
     <div class='main'>
- 
+
         <form action="/signup" method="get">
             <label>Don't have an account? Sign up:</label>
             <button type="submit">Sign Up</button>
         </form>
-    
+
         <br>
-    
-   
+
+
         <form action="/login" method="get">
             <label>Have an account?</label>
             <button type="submit">Log in</button>
         </form>
-    
+
         <br>
 
         <form action="/login" method="get">
             <label>Want To Logout?</label>
             <button type="submit">Log Out</button>
         </form>
-    
+
         <br>
-        <form action="/events.html" method="get">
+        <form action="/events" method="get">
             <button type="submit">Events</button>
         </form>
-    
+
         <br>
-        <form action="/weather.html" method="get">
+        <form action="/weather" method="get">
             <button type="submit">Events</button>
         </form>
-    
+
         <br>
-        
-        <form action="/sports.html" method="get">
+
+        <form action="/sports" method="get">
             <button type="submit">Sports</button>
         </form>
-    
+
         <br>
-        
-        <form action="/arts.html" method="get">
+
+        <form action="/arts" method="get">
             <button type="submit">Art</button>
         </form>
-    
+
         <br>
      </div>
 </body>

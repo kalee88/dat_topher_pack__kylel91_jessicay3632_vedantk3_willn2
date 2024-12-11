@@ -8,6 +8,7 @@ p01
 
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
     <style>
     <!--Navbar-->
     .subnav-hero-section {
@@ -85,21 +86,38 @@ p01
     font-family: "IBM Plex Serif", serif;
     font-weight: 500;
     font-style: normal;
-
     }
     </style>
+    <!--Navbar-->
+  <nav class="scrollhide-nav">
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">Topher's Tea by Dat Topher Pack</li>
+          <li>
+            <ul class="menu horizontal">
+              <li><a href="/">Home</a></li>
+              <li><a href="/events">Events</a></li>
+              <li><a href="/weather">Weather</a></li>
+              <li><a href="/sports">Sports</a></li>
+              <li><a href="/arts">Arts</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
     <title> Login </title>
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <header class="subnav-hero-section">
-    <h1 class="subnav-hero-headline">Foundation <small>by ZURB</small></h1>
-    <ul class="subnav-hero-subnav">
-      <li><a href="#">Take Action!</a></li>
-      <li><a href="#" class="is-active">Carpe Diem!</a></li>
-      <li><a target="_blank" href="https://zurb.com/responsive">Just do it!</a></li>
-    </ul>
-  </header>
 <img class="logo" src="static/assets/logo.jpg">
 <section class="centered-login">
 <h1 style="text-align: center;margin-bottom: 50px;">
