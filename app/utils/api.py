@@ -73,7 +73,7 @@ def searchAPI():
    api_key = os.getenv("search_key")
    headers = {"Authorization": f"Bearer {api_key}"}
    params = {
-     "engine": "google"
+     "engine": "google",
      "q": {search}
    }
    try:

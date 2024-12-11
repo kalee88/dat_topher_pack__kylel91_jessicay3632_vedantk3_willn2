@@ -104,7 +104,7 @@ def delete_user(id):
         c.execute("DELETE FROM users WHERE id = ?", (id,))
         db.commit()
     except sqlite3.Error as e:
-        print(f"delete_user: {e}"")
+        print(f"delete_user: {e}")
     finally:
         c.close()
 
