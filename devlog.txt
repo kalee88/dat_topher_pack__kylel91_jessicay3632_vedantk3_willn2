@@ -1,3 +1,5 @@
+vedantK -- 2024-12-11 11:47
+* Finished navbar with fully-working functionality
 jessicaY -- 2024-12-11 11:43
 * Added more methods to pull data from Europeana API
 vedantK -- 2024-12-10 11:47
