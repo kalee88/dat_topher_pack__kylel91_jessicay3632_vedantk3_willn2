@@ -114,7 +114,7 @@ def recommendEuro(set_id):
         return None
 
 # Couldn't find all the fields for this dictionary
-def searchAPI():
+def searchAPI(search):
    url = f"https://www.searchapi.io/api/v1/search?apihttps://api.europeana.eu/record/v2/[_key="
    api_key = os.getenv("search_key")
    headers = {"Authorization": f"Bearer {api_key}"}
@@ -134,40 +134,156 @@ def searchAPI():
        return None
 
 
-def pinnacleOdds():
+#All the PInnacle Odd methods 
+def getSpecialMarkets():
    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/special-markets"
    api_key = os.getenv("pinnacleodds_key")
-   querystring = {
-    "sport_id": {sid},
-    "is_have_odds": {odds},
-    "event_id": {eid}
+   querystring = {"is_have_odds":"true", "sport_id":"1"}
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
     }
-   headers = {
-   "x-rapidapi-key": {api_key},
-   "x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
-   }
    try:
-       response = requests.get(url, headers=headers)
+       response = requests.get(url, headers=headers, params=querystring)
        if response.status_code == 200:
-           sports_data = response.txt
-           sports_json = json.loads(sport_data)
-           return [sports_json['sports_id'],
-                   sports_json['sport_name'],
-                   sports_json['last'],
-                   sports_json['events'],
-                   sports_json['event_id'],
-                   sports_json['league_id'],
-                   sports_json['league_name'],
-                   sports_json['starts'],
-                   sports_json['last'],
-                   sports_json['home']
-           ]
+           sports_data = response.json()
+           return sports_data
        else:
            print(f"Failed to retrieve data {response.status_code}")
    except requests.exceptions.RequestException as e:
        #Also here
        return None
 
+def getEventDetails():
+   url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/details"
+   api_key = os.getenv("pinnacleodds_key")
+   querystring = {"event_id":"1419211461"}
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+    }
+   try:
+       response = requests.get(url, headers=headers, params=querystring)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+def getLeagues():
+   url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/leagues"
+   api_key = os.getenv("pinnacleodds_key")
+   querystring = {"sport_id":"1"}
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+    }
+   try:
+       response = requests.get(url, headers=headers, params=querystring)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+def getPeriods():
+    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/meta-periods"
+   api_key = os.getenv("pinnacleodds_key")
+   querystring = {"sport_id":"1"}
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+    }
+   try:
+       response = requests.get(url, headers=headers, params=querystring)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+def getMarkets():
+    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/markets"
+   api_key = os.getenv("pinnacleodds_key")
+   querystring = {"sport_id":"1","is_have_odds":"true"}
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+    }
+   try:
+       response = requests.get(url, headers=headers, params=querystring)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+def getArchiveEvents():
+    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/archive"
+   api_key = os.getenv("pinnacleodds_key")
+   querystring = {"sport_id":"1","page_num":"1"}
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+}
+   try:
+       response = requests.get(url, headers=headers, params=querystring)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+def getBettingStatus():
+    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/betting-status"
+   api_key = os.getenv("pinnacleodds_key")
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+}
+   try:
+       response = requests.get(url, headers=headers)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
+
+def getListOfSports():
+    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/sports"
+   api_key = os.getenv("pinnacleodds_key")
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+}
+   try:
+       response = requests.get(url, headers=headers)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+   except requests.exceptions.RequestException as e:
+       #Also here
+       return None
 
 def nationalWeatherService(long,lat):
    url = f"https://api.weather.gov/points/{long},{lat}"
