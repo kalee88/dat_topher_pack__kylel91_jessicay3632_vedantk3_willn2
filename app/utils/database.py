@@ -23,11 +23,17 @@ def create_tables(db):
             );
             ''')
         c.execute('''
-            CREATE TABLE IF NOT EXISTS favorites (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER NOT NULL,
+            CREATE TABLE IF NOT EXISTS contents (
+                id INTEGER PRIMARY KEY AUTOINCREMENET,
                 content_type TEXT NOT NULL,
                 metadata JSON NOT NULL,
+            );
+            ''')
+        c.execute('''
+            CREATE TABLE IF NOT EXISTS favorites (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+                FOREIGN KEY (content_id) REFERENCES contents(id) ON DELETE CASCADE,
                 created_at DATETIME
             );
             ''')
@@ -41,7 +47,9 @@ def drop_tables(db):
     try:
         c = db.cursor()
         c.execute("DROP TABLE IF EXISTS users")
+        c.execute("DROP TABLE IF EXISTS contents")
         c.execute("DROP TABLE IF EXISTS favorites")
+        c.execute("")
         db.commit()
     except sqlite3.Error as e:
         print(f"drop_tables: {e}")
@@ -110,19 +118,19 @@ def delete_user(id):
 
 # ----- favorites Functions -----
 
-def create_favorite(user_id, content_type, metadata, created_at):
-    valid_types = ["story", "art", "sport"]
-    if(not user_exists(user_id)):
-        raise KeyError(f"Could not locate user with id: {user_id}")
-    if(content_type not in valid_types):
-        raise KeyError(f"{contet_type} is not a valid content type")
-    else:
-        db = sqlite3.connect(DB_FILE)
-        try:
-            c = db.cursor()
-            c.execute("INSERT INTO favorites (user_id, content_type, metadata, created_at) VALUES (?, ?, ?, ?)", (user_id, content_type, metadata, created_at))
-            db.commit()
-        except sqlite3.Error:
-            print(f"create_favorite: {e}")
-        finally:
-            c.close()
+# def create_favorite(user_id, content_type, metadata, created_at):
+#     valid_types = ["story", "art", "sport"]
+#     if(not user_exists(user_id)):
+#         raise KeyError(f"Could not locate user with id: {user_id}")
+#     if(content_type not in valid_types):
+#         raise KeyError(f"{contet_type} is not a valid content type")
+#     else:
+#         db = sqlite3.connect(DB_FILE)
+#         try:
+#             c = db.cursor()
+#             c.execute("INSERT INTO favorites (user_id, content_type, metadata, created_at) VALUES (?, ?, ?, ?)", (user_id, content_type, metadata, created_at))
+#             db.commit()
+#         except sqlite3.Error:
+#             print(f"create_favorite: {e}")
+#         finally:
+#             c.close()
