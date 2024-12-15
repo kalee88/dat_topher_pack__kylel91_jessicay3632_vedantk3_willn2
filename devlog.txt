@@ -1,3 +1,6 @@
+willN -- 2024-12-15 17:28
+* Added contents table and CRUD functions
+* Updated design doc with new database organization (API -> database -> flask -> FEF, NOT api -> flask -> FEF)
 vedantK -- 2024-12-11 11:47
 * Finished navbar with fully-working functionality
 jessicaY -- 2024-12-11 11:43
