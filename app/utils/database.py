@@ -6,6 +6,7 @@
 
 import sqlite3
 import os
+import json
 from .auth import password_hash, user_exists
 #Establish database file path
 DB_FILE = os.path.join(os.path.dirname(__file__), "../db.db")
@@ -24,22 +25,24 @@ def create_tables(db):
             ''')
         c.execute('''
             CREATE TABLE IF NOT EXISTS contents (
-                id INTEGER PRIMARY KEY AUTOINCREMENET,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 content_type TEXT NOT NULL,
-                metadata JSON NOT NULL,
+                metadata JSON NOT NULL
             );
             ''')
         c.execute('''
             CREATE TABLE IF NOT EXISTS favorites (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                content_id INTEGER,
+                created_at DATETIME,
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-                FOREIGN KEY (content_id) REFERENCES contents(id) ON DELETE CASCADE,
-                created_at DATETIME
+                FOREIGN KEY (content_id) REFERENCES contents(id) ON DELETE CASCADE
             );
             ''')
         db.commit()
     except sqlite3.Error as e:
-        print(f"create_table: {e}")
+        print(f"create_tables: {e}")
     finally:
         c.close()
 
@@ -93,7 +96,7 @@ def read_user(id):
 def update_user(id, type, new_value):
     #sql sanitation (sanitization?)
     if type not in ['username', 'password', 'email']:
-        print("Invalid column type")
+        raise KeyError(f"Provided column [{type}] is not a valid column")
     else:
         db = sqlite3.connect(DB_FILE)
         try:
@@ -113,6 +116,63 @@ def delete_user(id):
         db.commit()
     except sqlite3.Error as e:
         print(f"delete_user: {e}")
+    finally:
+        c.close()
+
+# ----- contents Functions -----
+
+#metadata should be a python dictionary
+def create_content(content_type, metadata):
+    valid_types = ["story", "art", "sport"]
+    if content_type not in valid_types:
+        raise KeyError(f"Provided type [{content_type}] is not a valid content type")
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("INSERT INTO contents (content_type, metadata) VALUES (?, ?)", (content_type, json.dumps(metadata)))
+        db.commit()
+    except sqlite3.Error as e:
+        print(f"create_content: {e}")
+    finally:
+        c.close()
+
+#returns [id, content_type, metadata] with metadata as python dictionary
+def read_content(id):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("SELECT * FROM contents WHERE id = ?", (id,))
+        result = c.fetchone()
+        content = list(result)
+        content[2] = json.loads(result[2])
+    except sqlite3.Error as e:
+        print(f"read_content: {e}")
+    finally:
+        c.close()
+        return content
+    
+def update_content(id, type, new_value):
+    if type not in ['content_type', 'metadata']:
+        raise KeyError(f"Provided column [{type}] is not a valid column")
+    else:
+        db = sqlite3.connect(DB_FILE)
+        try:
+            c = db.cursor()
+            c.execute(f"UPDATE contents SET {type} = ? WHERE id = ?", (new_value, id))
+            db.commit()
+        except sqlite3.Error as e:
+            print(f"update_content: {e}")
+        finally:
+            c.close()
+
+def delete_content(id):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("DELETE FROM contents WHERE id = ?", (id,))
+        db.commit()
+    except sqlite3.Error as e:
+        print(f"delete_content: {e}")
     finally:
         c.close()
 
