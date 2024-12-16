@@ -7,7 +7,7 @@
 from flask import render_template, request, redirect, url_for, flash, session
 from app import app
 from .auth import *
-# from app.utils.api import *
+from app.utils.api import *
 
 @app.route("/")
 def home():
@@ -23,7 +23,21 @@ def arts():
 
 @app.route("/sports")
 def sports():
-    return render_template("sports.html")
+    special_markets = getSpecialMarkets()
+    event_details = getEventDetails()
+    leagues = getLeagues()
+    periods = getPeriods()
+    markets = getMarkets()
+    archive_events = getArchiveEvents()
+    betting_status = getBettingStatus()
+    sports = getListOfSports()
+    return render_template('sports.html', special_markets=special_markets, event_details=event_details, leagues=leagues, periods = period, markets = markets, archive_events = archive_events, betting_status = betting_status, sports=sports)
+
+@app.route('/sport/<int:sport_id>')
+def sportGames(id):
+    events = getEventDetails(id)
+    event_details = event.get('events', [])[0]
+    return render_template('sportGames.html',event = events, event_details=event_details)
 
 @app.route("/weather")
 def weather():

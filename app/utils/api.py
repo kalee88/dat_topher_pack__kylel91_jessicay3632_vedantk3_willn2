@@ -134,6 +134,24 @@ def getEventDetails():
     except requests.exceptions.RequestException as e:
        return None
 
+def getEventDetails(id):
+    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/details"
+    api_key = os.getenv("pinnacleodds_key")
+    querystring = {"event_id": id}
+    headers = {
+	"x-rapidapi-key": {api_key},
+	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
+    }
+    try:
+       response = requests.get(url, headers=headers, params=querystring)
+       if response.status_code == 200:
+           sports_data = response.json()
+           return sports_data
+       else:
+           print(f"Failed to retrieve data {response.status_code}")
+    except requests.exceptions.RequestException as e:
+       return None
+
 def getLeagues():
     url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/leagues"
     api_key = os.getenv("pinnacleodds_key")
