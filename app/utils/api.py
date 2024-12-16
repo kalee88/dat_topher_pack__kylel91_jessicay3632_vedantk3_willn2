@@ -97,7 +97,7 @@ def searchAPI(search):
        return None
 
 
-#All the Pinnacle Odd methods 
+#All the Pinnacle Odd methods
 def getSpecialMarkets():
     url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/special-markets"
     api_key = os.getenv("pinnacleodds_key")
@@ -120,24 +120,6 @@ def getEventDetails():
     url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/details"
     api_key = os.getenv("pinnacleodds_key")
     querystring = {"event_id":"1419211461"}
-    headers = {
-	"x-rapidapi-key": {api_key},
-	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
-    }
-    try:
-       response = requests.get(url, headers=headers, params=querystring)
-       if response.status_code == 200:
-           sports_data = response.json()
-           return sports_data
-       else:
-           print(f"Failed to retrieve data {response.status_code}")
-    except requests.exceptions.RequestException as e:
-       return None
-
-def getEventDetails(id):
-    url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/details"
-    api_key = os.getenv("pinnacleodds_key")
-    querystring = {"event_id": id}
     headers = {
 	"x-rapidapi-key": {api_key},
 	"x-rapidapi-host": "pinnacle-odds.p.rapidapi.com"
@@ -265,7 +247,7 @@ def nationalWeatherService(long,lat):
        if response.status_code == 200:
            weather_data = response.txt
            response_json = json.loads(weather_data)
-           return render_template('weather.html', city = response_json['city'], state = response_json['state'], distance = response_json['distance'], id1 = response_json['id'], type = response_json['type'], gridX = response_json['gridX'], gridY = response_json['gridY'], relativeLocation = response_json['relativeLocation'], forecast = response_json['forecast'], forecastHourly = response_json['forecastHourly'], forecastGridData = response_json['forecastGridData'], observationStations = response_json['observationStations'])           
+           return render_template('weather.html', city = response_json['city'], state = response_json['state'], distance = response_json['distance'], id1 = response_json['id'], type = response_json['type'], gridX = response_json['gridX'], gridY = response_json['gridY'], relativeLocation = response_json['relativeLocation'], forecast = response_json['forecast'], forecastHourly = response_json['forecastHourly'], forecastGridData = response_json['forecastGridData'], observationStations = response_json['observationStations'])
        else:
            print(f"Failed to retrieve data {response.status_code}")
    except requests.exceptions.RequestException as e:
