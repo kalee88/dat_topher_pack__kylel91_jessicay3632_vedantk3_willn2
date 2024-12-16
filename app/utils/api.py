@@ -25,7 +25,29 @@ def getGoogleFontKey():
 def getSearchKey():
     with open("app/keys/key_SearchAPI.txt", "r") as file:
         return file.read().strip()
-    
+
+#---Europeana Functions---#
+def searchEuro(query = '1500-2000'):
+    api_key = getEuropeanaKey()
+    url = f"https://api.europeana.eu/record/v2/search.json?query={query}&apiKey={api_key}"
+    if not api_key:
+        print("NO API KEY :(")
+        return None
+    params = {
+        'query': query,
+        'apiKey': api_key,
+        'rows': 10,
+        'start': 1,
+        'language': 'en',
+    }
+    try:
+        with urllib.request.urlopen(url) as response:
+            data = response.read().decode("utf-8")
+            json_data = json.loads(data)
+            return json_data
+    except Exception as e:
+        print(f"Error : {e}")
+        return None
 #---Sports Functions---#
 
 #returns list of dictionaries containing information on ended soccer games
