@@ -25,7 +25,29 @@ def getGoogleFontKey():
 def getSearchKey():
     with open("app/keys/key_SearchAPI.txt", "r") as file:
         return file.read().strip()
-    
+
+#---Europeana Functions---#
+def searchEuro(query = '1500-2000'):
+    api_key = getEuropeanaKey()
+    url = f"https://api.europeana.eu/record/v2/search.json?query={query}&apiKey={api_key}"
+    if not api_key:
+        print("NO API KEY :(")
+        return None
+    params = {
+        'query': query,
+        'apiKey': api_key,
+        'rows': 10,
+        'start': 1,
+        'language': 'en',
+    }
+    try:
+        with urllib.request.urlopen(url) as response:
+            data = response.read().decode("utf-8")
+            json_data = json.loads(data)
+            return json_data
+    except Exception as e:
+        print(f"Error : {e}")
+        return None
 #---Sports Functions---#
 
 #returns list of dictionaries containing information on ended soccer games
@@ -75,71 +97,71 @@ def getPinnacleResponse(page_num, events_num):
     except urllib.error.URLError as e:
         print(f"URL Error: {e.reason}")
     except Exception as e:
-        print(e)
-        return None
+            print(e)
+            return None
 
-def generate_sport_card(event):
+    def generate_sport_card(event):
 
-    html = """
-    <html>
-    <head>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f9;
-                padding: 20px;
-            }
-            .card {
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                padding: 15px;
-                margin-bottom: 20px;
-                background: #fff;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
-            .card h3 {
-                margin: 0;
-                font-size: 1.5em;
-                color: #333;
-            }
-            .card p {
-                margin: 5px 0;
-                color: #555;
-            }
-            .card .score {
-                font-weight: bold;
-                color: #007bff;
-            }
-        </style>
-    </head>
-    <body>
-    """
-    
+        html = """
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f9;
+                    padding: 20px;
+                }
+                .card {
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    background: #fff;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+                .card h3 {
+                    margin: 0;
+                    font-size: 1.5em;
+                    color: #333;
+                }
+                .card p {
+                    margin: 5px 0;
+                    color: #555;
+                }
+                .card .score {
+                    font-weight: bold;
+                    color: #007bff;
+                }
+            </style>
+        </head>
+        <body>
+        """
+        
 
-    league_name = event['league_name']
-    home_team = event['home']
-    away_team = event['away']
-    start_time = event['starts'][:10]
-    home_score = event['home_score']
-    away_score = event['away_score']
-    cancelled = event['cancelled']
-    
-    card_html = f"""
-    <div class="card">
-        <h3>{home_team} vs {away_team}</h3>
-        <p>League: {league_name}</p>
-        <p>Start Time: {start_time}</p>
-        <p>Score: 
-            <span class="score">{home_team} {home_score} - {away_score} {away_team}</span>
-        </p>
-        {"<p>This event was cancelled.</p>" if cancelled else ""}
-    </div>
-    """
-    html += card_html
-    
-    html += """
-    </body>
-    </html>
-    """
-    
-    return html
+        league_name = event['league_name']
+        home_team = event['home']
+        away_team = event['away']
+        start_time = event['starts'][:10]
+        home_score = event['home_score']
+        away_score = event['away_score']
+        cancelled = event['cancelled']
+        
+        card_html = f"""
+        <div class="card">
+            <h3>{home_team} vs {away_team}</h3>
+            <p>League: {league_name}</p>
+            <p>Start Time: {start_time}</p>
+            <p>Score: 
+                <span class="score">{home_team} {home_score} - {away_score} {away_team}</span>
+            </p>
+            {"<p>This event was cancelled.</p>" if cancelled else ""}
+        </div>
+        """
+        html += card_html
+        
+        html += """
+        </body>
+        </html>
+        """
+        
+        return html
