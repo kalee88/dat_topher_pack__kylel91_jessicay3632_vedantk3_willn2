@@ -29,6 +29,8 @@ def getSearchKey():
 #---Sports Functions---#
 
 #returns list of dictionaries containing information on ended soccer games
+#page_num is just which page of results you want 
+#events_num is how many events you want from said page
 def getPinnacleResponse(page_num, events_num):
     url = "https://pinnacle-odds.p.rapidapi.com/kit/v1/archive"
     querystring = {"sport_id": "1", "page_num": page_num}
