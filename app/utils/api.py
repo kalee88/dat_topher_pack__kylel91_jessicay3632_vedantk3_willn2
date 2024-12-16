@@ -9,17 +9,23 @@ import urllib.request
 from urllib.request import Request
 from urllib.request import urlopen
 import json
-from dotenv import load_dotenv, dotenv_values
 import os
-load_dotenv()
+#from dotenv import load_dotenv, dotenv_values
+
+keys = ["key_GoogleFonts.txt","key_Europeana.txt", "key_SearchAPI","key_pinnacleodds.txt"]
+for i in range(len(keys)):
+    file = open("keys/" + keys[i], "r")
+    keys[i] = file.read()
+    file.close()
+keys = [key.strip() for key in keys]
 
 #env file is stored locally
-keys = [os.getenv("europeana_key"), os.getenv("googlefonts_key"), os.getenv("search_key"), os.getenv("pinnacleodds_key")]
+#keys = [os.getenv("europeana_key"), os.getenv("googlefonts_key"), os.getenv("search_key"), os.getenv("pinnacleodds_key")]
 
 #We can try to handle the responses with other functions, these just get the response
 def googFonts(font):
    url = f"https://www.googleapis.com/webfonts/v1/webfonts?key="
-   api_key = os.getenv("googlefonts_key")
+   api_key = keys[0]
    headers = {"Authorization": f"Bearer {api_key}"}
    try:
        response = requests.get(url, headers=headers)
