@@ -26,20 +26,10 @@ def googFonts(font):
        if response.status_code == 200:
            fonts_data = response.txt
            response_json = json.loads(fonts_data)
-           return [response_json['kind'],
-                   response_json['family'],
-                   response_json['subsets'],
-                   response_json['menu'],
-                   response_json['variants'],
-                   response_json['version'],
-                   response_json['axes'],
-                   response_json['lastModified'],
-                   response_json['files']
-           ]
+           return render_template('arts.html', kind = response_json['kind'], family = response_json['family'], subsets = response_json['subsets'], menu = response_json['menu'], variants =  response_json['variants'], version = response_json['version'], axes = response_json['axes'], lastModified = response_json['lastModified'], files = response_json['files'])
        else:
            print(f'Failed to retrieve data {response.status_code}')
    except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 
@@ -52,18 +42,10 @@ def searchEuro(query):
        if response.status_code == 200:
            art_data = response.txt
            response_json = json.loads(art_data)
-           return [response_json['title'],
-                   response_json['subject'],
-                   response_json['what'],
-                   response_json['when'],
-                   response_json['where'],
-                   response_json['who'],
-                   response_json['text']
-           ]
+           return render_template('arts.html', title = response_json['title'], subject = response_json['subject'], what = response_json['what'], when = response_json['when'], where = response_json['where'], who = response_json['who'], text = response_json['text'])
        else:
            print(f"Failed to retrieve data {response.status_code}")
    except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def dataEuro(entity_type, entity_id):
@@ -75,19 +57,10 @@ def dataEuro(entity_type, entity_id):
         if response.status_code == 200:
             art_data = response.txt
             response_json = json.loads(art_data)
-            return [response_json['id'],
-                    response_json['type'],
-                    response_json['proxyFor'],
-                    response_json['proxyln'],
-                    response_json['created'],
-                    response_json['modified'],
-                    response_json['rights'],
-                    response_json['source']
-            ]
+            return render_template('arts.html', id1 = response_json['id'], type1 = response_json['type'], proxyFor = response_json['proxyFor'], proxyIn = response_json['proxyln'], created = response_json['created'], modified = response_json['modified'], rights = response_json['rights'], source = response_json['source'])
         else:
             print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-        #Also here
         return None
 
 def recommendEuro(set_id):
@@ -99,21 +72,12 @@ def recommendEuro(set_id):
         if response.status_code == 200:
             art_data = response.txt
             response_json = json.loads(art_data)
-            return [response_json['title'],
-                    response_json['subject'],
-                    response_json['what'],
-                    response_json['when'],
-                    response_json['where'],
-                    response_json['who'],
-                    response_json['text']
-            ]
+            return render_template('arts.html', title = response_json['title'], subject = response_json['subject'], what = response_json['what'], when = response_json['when'], where = response_json['where'], who = response_json['who'], text = response_json['text'])
         else:
             print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-        #Also here
         return None
 
-# Couldn't find all the fields for this dictionary
 def searchAPI(search):
    url = f"https://www.searchapi.io/api/v1/search?apihttps://api.europeana.eu/record/v2/[_key="
    api_key = os.getenv("search_key")
@@ -130,11 +94,10 @@ def searchAPI(search):
        else:
            print(f"Failed to retrieve data {response.status_code}")
    except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 
-#All the PInnacle Odd methods 
+#All the Pinnacle Odd methods 
 def getSpecialMarkets():
     url = f"https://pinnacle-odds.p.rapidapi.com/kit/v1/special-markets"
     api_key = os.getenv("pinnacleodds_key")
@@ -151,7 +114,6 @@ def getSpecialMarkets():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-    #Also here
        return None
 
 def getEventDetails():
@@ -170,7 +132,6 @@ def getEventDetails():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def getLeagues():
@@ -189,7 +150,6 @@ def getLeagues():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def getPeriods():
@@ -208,7 +168,6 @@ def getPeriods():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def getMarkets():
@@ -227,7 +186,6 @@ def getMarkets():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def getArchiveEvents():
@@ -246,7 +204,6 @@ def getArchiveEvents():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def getBettingStatus():
@@ -264,7 +221,6 @@ def getBettingStatus():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def getListOfSports():
@@ -282,7 +238,6 @@ def getListOfSports():
        else:
            print(f"Failed to retrieve data {response.status_code}")
     except requests.exceptions.RequestException as e:
-       #Also here
        return None
 
 def nationalWeatherService(long,lat):
@@ -291,22 +246,8 @@ def nationalWeatherService(long,lat):
        response = response.get(url)
        if response.status_code == 200:
            weather_data = response.txt
-           weather_json = json.loads(weather_data)
-           return [weather_json['city'],
-                   weather_json['state'],
-                   weather_json['distance'],
-                   weather_json['id'],
-                   weather_json['type'],
-                   weather_json['gridX'],
-                   weather_json['gridY'],
-                   weather_json['relativeLocation'],
-                   weather_json['bearing'],
-                   weather_json['unitCode'],
-                   weather_json['forecast'],
-                   weather_json['forecastHourly'],
-                   weather_json['forecastGridData'],
-                   weather_json['observationStations']
-           ]
+           response_json = json.loads(weather_data)
+           return render_template('weather.html', city = response_json['city'], state = response_json['state'], distance = response_json['distance'], id1 = response_json['id'], type = response_json['type'], gridX = response_json['gridX'], gridY = response_json['gridY'], relativeLocation = response_json['relativeLocation'], forecast = response_json['forecast'], forecastHourly = response_json['forecastHourly'], forecastGridData = response_json['forecastGridData'], observationStations = response_json['observationStations'])           
        else:
            print(f"Failed to retrieve data {response.status_code}")
    except requests.exceptions.RequestException as e:

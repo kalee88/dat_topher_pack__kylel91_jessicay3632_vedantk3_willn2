@@ -1,6 +1,10 @@
+jessicaY -- 2024-12-15 23:52
+* Added render template and variables for APIs
 willN -- 2024-12-15 17:28
 * Added contents table and CRUD functions
 * Updated design doc with new database organization (API -> database -> flask -> FEF, NOT api -> flask -> FEF)
+jessicaY -- 2024-12-13 15:11
+* Added more methods for pinnacle odds
 vedantK -- 2024-12-11 11:47
 * Finished navbar with fully-working functionality
 jessicaY -- 2024-12-11 11:43
