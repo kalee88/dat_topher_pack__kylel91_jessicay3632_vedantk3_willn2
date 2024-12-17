@@ -25,7 +25,29 @@ def getGoogleFontKey():
 def getSearchKey():
     with open("app/keys/key_SearchAPI.txt", "r") as file:
         return file.read().strip()
-
+        
+#--- Events Functions --- #
+def findNews():
+    api_key = getSearchKey()
+    if not api_key:
+        print("NO API KEY :(")
+        return None
+    params = {
+        "engine": "google_news",
+        "q": "Top News Today",
+        "location": "New York,United States",
+        "api_key": api_key
+    }
+    url = f'https://www.searchapi.io/api/v1/search?{urllib.parse.urlencode(params)}'
+    try:
+        with urllib.request.urlopen(url) as response:
+            data = response.read().decode("utf-8")
+            json_data = json.loads(data)
+            return json_data
+    except Exception as e:
+        print(f"Error in searchEuro: {e}")
+        return None
+        
 #---Europeana Functions---#
 '''
 def searchEuro(query = '1500-2000'):
