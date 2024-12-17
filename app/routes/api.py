@@ -4,7 +4,8 @@ from app.utils.api import *
 
 @app.route("/events")
 def events():
-    return render_template("events.html")
+    news = findNews()
+    return render_template('events.html', news=news["organic_results"])
 
 @app.route("/arts")
 def arts():
