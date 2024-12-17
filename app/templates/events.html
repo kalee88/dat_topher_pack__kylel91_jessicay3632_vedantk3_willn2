@@ -12,18 +12,142 @@ p01
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <title>    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <title>  Events  </title>
+    <style>
+            .subnav-hero-section {
+            text-align: center;
+            background: #1779ba;
+            background-size: cover;
+            position: relative;
+            overflow: visible;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            height: 300px;
+            }
+        
+            .subnav-hero-section .subnav-hero-headline {
+            color: #fefefe;
+            }
+        
+            .subnav-hero-subnav {
+            float: none;
+            position: absolute;
+            text-align: center;
+            margin: 0 auto;
+            bottom: 0;
+            width: 100%;
+            }
+        
+            .subnav-hero-subnav li {
+            float: none;
+            display: inline-block;
+            }
+        
+            .subnav-hero-subnav li a {
+            padding: 0.9rem 1rem;
+            font-size: 0.75rem;
+            color: #fefefe;
+            text-transform: uppercase;
+            display: block;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.35s ease-in-out;
+            }
+        
+            .subnav-hero-subnav li a.is-active {
+            background: rgba(254, 254, 254, 0.15);
+            }
+        
+            .subnav-hero-subnav li a:hover {
+            background: rgba(254, 254, 254, 0.15);
+            }
+        
+        /* Main */
+        body, h1, h3, button, label {
+            font-family: "IBM Plex Serif", serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        /* Headings */
+        h1, h3 {
+            color: #1779ba;
+            margin-bottom: 1rem;
+        }
+        
+        /* Forms */
+        form {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        form button {
+            background-color: #1779ba;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        form button:hover {
+            background-color: #125d8a;
+        }
+    </style>
+    <nav class="scrollhide-nav">
+        <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Topher's Tea by Dat Topher Pack</li>
+            <li>
+                <ul class="menu horizontal">
+                <li><a href="/">Home</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/weather">Weather</a></li>
+                <li><a href="/sports">Sports</a></li>
+                <li><a href="/arts">Arts</a></li>
+                </ul>
+            </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+            <li><input type="search" placeholder="Search"></li>
+            <li><button type="button" class="button">Search</button></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
 </head>
 
 <body>
 
-        <form action="/home.html" method="get">
-            <button type="submit">Home</button>
-        </form>
-    
-        <br>
-     </div>
+    <h1>Top News Today</h1>
+    <ul>
+        {% for new in news %}
+            <li>
+                <h3><a href="{{ new.link }}" target="_blank">{{ new.title }}</a></h3>
+                <p>{{ news.snippet }}</p>
+                <p><strong>Source:</strong> {{ new.source }} - <strong>Published:</strong> {{ new.date }}</p>
+                <img src="{{ new.thumbnail }}" alt="Thumbnail" width="100">
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>
