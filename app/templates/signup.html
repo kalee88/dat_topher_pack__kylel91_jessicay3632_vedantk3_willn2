@@ -129,18 +129,26 @@ p01
         {%endfor%}
     {%endif%}
 {%endwith%}
-<form action="/login" method="POST">
+<form action="/signup" method="POST">
     <label>
-        <h3>Create Email</h3>
-        <input type="email" name="email" placeholder="name@example.com" required>
+        <h3>Username</h3>
+        <input type="text" name="username" placeholder="My Name" required>
     </label><br>
     <label>
-        <h3>Create Password</h3>
-        <input type="password" name="password" placeholder="Your Password" required>
+        <h3>Email</h3>
+        <input type="email" name="email" placeholder="address@example.com" required>
+    </label><br>
+    <label>
+        <h3>Password</h3>
+        <input type="password" name="password" placeholder = "Your Password" required>
+    </label><br>
+    <label>
+        <h3>Confirm Password</h3>
+        <input type="password" name="confirm_password" placeholder = "Reenter Password" required>
     </label><br>
     <h3> </h3>
     <button type="submit" name="sub1">Sign Up</button>
-    <p style="text-align: center">{{ message }}</p>
+
 </form>
 <br>
 <h3 style="text-align: center">Don't have an account? Sign up <a href="/signup">here</a></h3>
