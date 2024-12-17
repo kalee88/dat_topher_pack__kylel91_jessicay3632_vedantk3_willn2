@@ -8,94 +8,119 @@ p01
 
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
     <style>
-      <!--Navbar-->
-      .subnav-hero-section {
-      text-align: center;
-      background: #1779ba;
-      background-size: cover;
-      position: relative;
-      overflow: visible;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-justify-content: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      height: 300px;
-      }
+    <!--Navbar-->
+    .subnav-hero-section {
+    text-align: center;
+    background: #1779ba;
+    background-size: cover;
+    position: relative;
+    overflow: visible;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 300px;
+    }
 
-      .subnav-hero-section .subnav-hero-headline {
-      color: #fefefe;
-      }
+    .subnav-hero-section .subnav-hero-headline {
+    color: #fefefe;
+    }
 
-      .subnav-hero-subnav {
-      float: none;
-      position: absolute;
-      text-align: center;
-      margin: 0 auto;
-      bottom: 0;
-      width: 100%;
-      }
+    .subnav-hero-subnav {
+    float: none;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    bottom: 0;
+    width: 100%;
+    }
 
-      .subnav-hero-subnav li {
-      float: none;
-      display: inline-block;
-      }
+    .subnav-hero-subnav li {
+    float: none;
+    display: inline-block;
+    }
 
-      .subnav-hero-subnav li a {
-      padding: 0.9rem 1rem;
-      font-size: 0.75rem;
-      color: #fefefe;
-      text-transform: uppercase;
-      display: block;
-      font-weight: bold;
-      letter-spacing: 1px;
-      transition: all 0.35s ease-in-out;
-      }
+    .subnav-hero-subnav li a {
+    padding: 0.9rem 1rem;
+    font-size: 0.75rem;
+    color: #fefefe;
+    text-transform: uppercase;
+    display: block;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.35s ease-in-out;
+    }
 
-      .subnav-hero-subnav li a.is-active {
-      background: rgba(254, 254, 254, 0.15);
-      }
+    .subnav-hero-subnav li a.is-active {
+    background: rgba(254, 254, 254, 0.15);
+    }
 
-      .subnav-hero-subnav li a:hover {
-      background: rgba(254, 254, 254, 0.15);
-      }
+    .subnav-hero-subnav li a:hover {
+    background: rgba(254, 254, 254, 0.15);
+    }
 
-
-      img.logo {
-      display: block;
-      margin-left: auto;
-      margin-right: auto
-      }
-      h3 {
-      font-family: "IBM Plex Serif", serif;
-      font-weight: 500;
-      font-style: normal;
-      }
-      h3 {
-      font-family: "IBM Plex Serif", serif;
-      font-weight: 500;
-      font-style: normal;
-      }
-      button {
-      font-family: "IBM Plex Serif", serif;
-      font-weight: 500;
-      font-style: normal;
-
-      }
+    img.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+    }
+    h1 {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: normal;
+    }
+    h3 {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: normal;
+    }
+    button {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: normal;
+    }
     </style>
-    <title> Signup </title>
+    <!--Navbar-->
+  <nav class="scrollhide-nav">
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">Topher's Tea by Dat Topher Pack</li>
+          <li>
+            <ul class="menu horizontal">
+              <li><a href="/">Home</a></li>
+              <li><a href="/events">Events</a></li>
+              <li><a href="/weather">Weather</a></li>
+              <li><a href="/sports">Sports</a></li>
+              <li><a href="/arts">Arts</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <title> Sign Up </title>
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 <img class="logo" src="static/assets/logo.jpg">
 <section class="centered-login">
-    <h1 style="text-align: center;margin-bottom: 30px;">
-    Create an account!
+<h1 style="text-align: center;margin-bottom: 50px;">
+    Welcome!
 </h1>
 {% with messages = get_flashed_messages()%}
     {% if messages%}
@@ -104,29 +129,21 @@ p01
         {%endfor%}
     {%endif%}
 {%endwith%}
-<form action="/signup" method="POST">
+<form action="/login" method="POST">
     <label>
-        <h3>Username</h3>
-        <input type="text" name="username" placeholder="My Name" required>
+        <h3>Create Email</h3>
+        <input type="email" name="email" placeholder="name@example.com" required>
     </label><br>
     <label>
-        <h3>Email</h3>
-        <input type="email" name="email" placeholder="address@example.com" required>
-    </label><br>
-    <label>
-        <h3>Password</h3>
-        <input type="password" name="password" placeholder = "Your Password" required>
-    </label><br>
-    <label>
-        <h3>Confirm Password</h3>
-        <input type="password" name="confirm_password" placeholder = "Reenter Password" required>
+        <h3>Create Password</h3>
+        <input type="password" name="password" placeholder="Your Password" required>
     </label><br>
     <h3> </h3>
     <button type="submit" name="sub1">Sign Up</button>
-
+    <p style="text-align: center">{{ message }}</p>
 </form>
 <br>
-<h3 style="text-align: center">Already have an account? Log in <a href="/login">here</a></h3>
+<h3 style="text-align: center">Don't have an account? Sign up <a href="/signup">here</a></h3>
 <p style="text-align: center"> Or <a href="/">continue as guest</a></p>
 </section>
 </body>
