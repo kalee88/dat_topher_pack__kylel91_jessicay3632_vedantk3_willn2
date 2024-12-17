@@ -140,6 +140,7 @@ form button:hover {
 <body>
     {% if is_logged_in %}
     <p>Logged in as {{logged_in_user[1]}} ({{logged_in_user[2]}})</p>
+    <a href="/profile">View favorites</a>
     {% else %}
     <p>Browing as guest</p>
     {% endif %}

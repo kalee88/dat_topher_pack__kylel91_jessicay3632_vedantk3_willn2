@@ -4,6 +4,7 @@
 # p01
 # 2024-12-07
 
+import json
 import sqlite3
 import os
 from .auth import password_hash, user_exists
@@ -27,7 +28,7 @@ def create_tables(db):
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
                 content_type TEXT NOT NULL,
-                metadata JSON NOT NULL,
+                metadata TEXT NOT NULL,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             );
             ''')
@@ -122,7 +123,36 @@ def create_favorite(user_id, content_type, metadata):
             c = db.cursor()
             c.execute("INSERT INTO favorites (user_id, content_type, metadata) VALUES (?, ?, ?)", (user_id, content_type, metadata))
             db.commit()
-        except sqlite3.Error:
+        except sqlite3.Error as e:
             print(f"create_favorite: {e}")
         finally:
             c.close()
+
+def read_favorites(user_id, content_type):
+    valid_types = ["story", "art", "sport"]
+
+    if not user_exists(user_id, "id"):
+        raise KeyError(f"Could not locate user with id: {user_id}")
+    
+    if content_type not in valid_types:
+        raise KeyError(f"{content_type} is not a valid content type")
+    
+    try:
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        c.execute("SELECT metadata FROM favorites WHERE user_id = ? AND content_type = ?", (user_id, content_type))
+        
+        rows = c.fetchall()
+    
+        results = []
+        for row in rows:
+            metadata_str = row[0]
+            results.append(metadata_str)
+        return results
+    except sqlite3.Error as e:
+        print(f"Error reading favorites: {e}")
+        return None
+    
+    finally:
+        c.close()
+ 
