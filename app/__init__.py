@@ -16,8 +16,6 @@ from app.utils import database, auth, api
 
 database.setup_db()
 database.create_user('username', 'user@email.com', 'password')
-database.create_content('story', {'dog' : 'cat', 'blue' : 'red'})
-print(database.read_content(1)[2]['dog'])
 from app.routes import *
 
 if __name__ == "__main__": 
