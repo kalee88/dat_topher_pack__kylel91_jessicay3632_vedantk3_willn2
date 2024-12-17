@@ -1,3 +1,6 @@
+kyleL -- 2024-12-17 6:00
+* Got events and art sites running
+* css on events and art sites
 willN -- 2024-12-17 01:00
 * Finished
 * Favoriting works kinda (not as initially intended but oh well)
