@@ -140,7 +140,14 @@ p01
     <h1>Top News Today</h1>
     <ul>
         {% for new in news %}
-            <li>
+        {% if logged_in %}
+            <form method="POST" action="/favorite">
+                <button type="submit" name="data" value="storyBREAKBREAKBREAK{{new}}">
+                    &#9733;
+                </button>
+            </form>
+        {% endif %}
+        <li>
                 <h3><a href="{{ new.link }}" target="_blank">{{ new.title }}</a></h3>
                 <p>{{ news.snippet }}</p>
                 <p><strong>Source:</strong> {{ new.source }} - <strong>Published:</strong> {{ new.date }}</p>

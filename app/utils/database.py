@@ -28,7 +28,7 @@ def create_tables(db):
                 user_id INTEGER NOT NULL,
                 content_type TEXT NOT NULL,
                 metadata JSON NOT NULL,
-                created_at DATETIME
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             );
             ''')
         db.commit()
@@ -110,9 +110,9 @@ def delete_user(id):
 
 # ----- favorites Functions -----
 
-def create_favorite(user_id, content_type, metadata, created_at):
+def create_favorite(user_id, content_type, metadata):
     valid_types = ["story", "art", "sport"]
-    if(not user_exists(user_id)):
+    if(not user_exists(user_id, "id")):
         raise KeyError(f"Could not locate user with id: {user_id}")
     if(content_type not in valid_types):
         raise KeyError(f"{content_type} is not a valid content type")
@@ -120,7 +120,7 @@ def create_favorite(user_id, content_type, metadata, created_at):
         db = sqlite3.connect(DB_FILE)
         try:
             c = db.cursor()
-            c.execute("INSERT INTO favorites (user_id, content_type, metadata, created_at) VALUES (?, ?, ?, ?)", (user_id, content_type, metadata, created_at))
+            c.execute("INSERT INTO favorites (user_id, content_type, metadata) VALUES (?, ?, ?)", (user_id, content_type, metadata))
             db.commit()
         except sqlite3.Error:
             print(f"create_favorite: {e}")

@@ -8,6 +8,7 @@ from flask import render_template, request, redirect, url_for, flash, session
 from app import app
 from .auth import *
 from .api import *
+from .favorite import *
 
 @app.route("/")
 def home():

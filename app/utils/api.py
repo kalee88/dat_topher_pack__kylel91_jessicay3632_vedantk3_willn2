@@ -9,6 +9,7 @@ import urllib.request
 import urllib.parse
 import json
 import zlib
+from .auth import is_logged_in
 
 def getPinnacleKey():
     with open("app/keys/key_pinnacleodds.txt", "r") as file:
@@ -204,15 +205,27 @@ def generate_sport_card(event):
             <span class="score">{home_team} {home_score} - {away_score} {away_team}</span>
         </p>
         {"<p>This event was cancelled.</p>" if cancelled else ""}
-        <form method="POST" action="/favorite">
-            <button type="submit" name="event" value="{event}">
+
+    """
+
+    favorite_html = f"""
+    <form method="POST" action="/favorite">
+            <button type="submit" name="data" value="sportBREAKBREAKBREAK{event}">
                 &#9733;
             </button>
         </form>
-    </div>
     """
+
+   
+
     html += card_html
     
+    if is_logged_in():
+        html += favorite_html
+
+    html += """
+    </div>
+    """
     html += """
     </body>
     </html>

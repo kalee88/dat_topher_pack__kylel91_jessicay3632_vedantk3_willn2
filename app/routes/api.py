@@ -1,18 +1,19 @@
 from flask import render_template, request
 from app import app
 from app.utils.api import *
+from app.utils.auth import is_logged_in
 
 @app.route("/events")
 def events():
     news = findNews()
-    return render_template('events.html', news=news["organic_results"])
+    return render_template('events.html', news=news["organic_results"], logged_in = is_logged_in())
 
 @app.route("/arts")
 def arts():
     query = request.args.get('query', default='Paris', type=str)
     results = searchEuro(query)
     if results:
-        return render_template('arts.html', results=results)
+        return render_template('arts.html', results=results, logged_in = is_logged_in())
     else:
         return render_template('arts.html', results=None, error="No results found or there was an error.")
 
@@ -29,12 +30,6 @@ def sports():
         html = generate_sport_card(event)
         cards.append(html)
     return render_template('sports.html', cards = cards, page_num = int(page_num))
-
-@app.route('/sport/<int:sport_id>')
-def sportGames(id):
-    events = getEventDetails(id)
-    event_details = event.get('events', [])[0]
-    return render_template('sportGames.html',event = events, event_details=event_details)
 
 @app.route("/weather")
 def weather():

@@ -16,6 +16,7 @@ from app.utils import database, auth, api
 
 database.setup_db()
 database.create_user('username', 'user@email.com', 'password')
+
 from app.routes import *
 
 if __name__ == "__main__": 
