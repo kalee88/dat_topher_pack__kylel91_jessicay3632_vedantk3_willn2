@@ -1,4 +1,8 @@
-vedantK -- 2024-12-16 8:33
+vedantK -- 2024-12-16 23:22
+* Updated design doc with a better description of project as well as a summary of all changes from intial document
+* Changed readme with the same information
+* Changed readme
+vedantK -- 2024-12-16 20:33
 * Made the IBM Plex Google Font universal across the whole website
 * Added navbar on all current pages (specifically login, signup, and index)
 jessicaY -- 2024-12-15 23:52
