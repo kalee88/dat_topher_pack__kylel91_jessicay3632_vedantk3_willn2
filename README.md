@@ -4,9 +4,9 @@
 | -------------------------------------- | ---------- | ---------- | ---------- | -------- |
 | Set up Flask and SQLite3 environment   |    **X**   |            |            |   **X**  |
 | Build User Authentication Functionality|            |            |            |   **X**  |
-| API Configuration and Connections      |            |    **X**   |            |          |
+| API Configuration and Connections      |    **X**   |    **X**   |            |          |
 | Middleware file organization           |            |            |            |   **X**  |
-| Middleware creation (actual coding)    |    **X**   |    **X**   |            |          |
+| Middleware creation (actual coding)    |    **X**   |    **X**   |            |   **X**  |
 | Build Database                         |            |            |            |   **X**  |
 | Frontend (HTML Templates)              |    **X**   |            |   **X**    |          |
 | Frontend (CSS + FEF)                   |            |            |   **X**    |          |
@@ -34,12 +34,6 @@ Activate a python virtual enviornment (optional but recommended)
 3. Activate a venv
     * macOS/Linux: `$ source {path_name}/bin/activate`
     * Windows: `$ {path_name}\Scripts\activate`
-
-Activate dotenv 
-1. Launch the terminal.
-2. Cd into ```~/.../dat_topher_pack_kylel91_jessicay3632_vedantk3_willn2/app/utils$```
-3. Run ```$ pip install python-dotenv``` in the terminal.
-4. Create an env file and add API keys (stored locally).
 
 If you want to deactivate the environment, run ```$ deactivate``` 
 
