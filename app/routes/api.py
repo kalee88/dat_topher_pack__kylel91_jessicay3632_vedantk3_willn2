@@ -39,9 +39,9 @@ def weather():
     day = data['isDaytime']
     windSpeed = data['windSpeed']
 
-    compass = {'N' : "North", 'S' : 'South', 'E' : 'East', 'W' : 'West'}
 
-    windDirection = compass[data['windDirection']]
+
+    windDirection = data['windDirection']
     description = data['detailedForecast']
     rainChance = data['probabilityOfPrecipitation']
     temp = data['temperature']

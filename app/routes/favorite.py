@@ -36,4 +36,4 @@ def profile():
         sport = item.replace("False", "false").replace("True", "true")
         sports.append(json.loads(sport))
     
-    return render_template('profile.html', stories = story_favorites, arts = art_favorites, sports = sports)
+    return render_template('profile.html', sports = sports)
