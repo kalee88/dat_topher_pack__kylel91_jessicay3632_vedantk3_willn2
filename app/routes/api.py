@@ -12,7 +12,9 @@ def arts():
 
 @app.route("/sports")
 def sports():
-    page_num = request.args.get('pageNum', 1)
+    page_num = request.args.get('pageNum')
+    if(page_num == None):
+        page_num = 1
     events = getPinnacleResponse(page_num, 10)
     if(events == None):
         return render_template('sports.html', cards = [])
