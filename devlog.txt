@@ -1,3 +1,10 @@
+willN -- 2024-12-17 01:00
+* Finished
+* Favoriting works kinda (not as initially intended but oh well)
+* Database no longer has contents
+* Design doc has been reverted back to old database organization seen in v1
+* disgusting navbar has been implemented universally
+* project likely complete unfortunately
 vedantK -- 2024-12-16 23:22
 * Updated design doc with a better description of project as well as a summary of all changes from intial document
 * Changed readme with the same information
