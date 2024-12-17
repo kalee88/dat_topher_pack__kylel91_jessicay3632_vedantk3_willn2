@@ -1,3 +1,6 @@
+vedantK -- 2024-12-16 8:33
+* Made the IBM Plex Google Font universal across the whole website
+* Added navbar on all current pages (specifically login, signup, and index)
 jessicaY -- 2024-12-15 23:52
 * Added render template and variables for APIs
 willN -- 2024-12-15 17:28
