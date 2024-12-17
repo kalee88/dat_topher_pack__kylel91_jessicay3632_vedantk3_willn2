@@ -8,7 +8,7 @@ def events():
 
 @app.route("/arts")
 def arts():
-    query = request.args.get('query', default='1500-2000', type=str)
+    query = request.args.get('query', default='Paris', type=str)
     results = searchEuro(query)
     if results:
         return render_template('arts.html', results=results)

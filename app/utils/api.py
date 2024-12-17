@@ -27,9 +27,9 @@ def getSearchKey():
         return file.read().strip()
 
 #---Europeana Functions---#
+'''
 def searchEuro(query = '1500-2000'):
     api_key = getEuropeanaKey()
-    url = f"https://api.europeana.eu/record/v2/search.json?query={query}&apiKey={api_key}"
     if not api_key:
         print("NO API KEY :(")
         return None
@@ -40,15 +40,38 @@ def searchEuro(query = '1500-2000'):
         'start': 1,
         'language': 'en',
     }
+    url = f"https://api.europeana.eu/record/v2/search.json?query={urllib.parse.quote(query)}&wskey={api_key}"
     try:
         with urllib.request.urlopen(url) as response:
             data = response.read().decode("utf-8")
-            json_data = json.loads(data)
+            logger.debug(f"Raw Response Data: {data}")
             print(data) 
             return json_data
     except Exception as e:
         print(f"Error : {e}")
+        return None'''
+
+def searchEuro(query="Paris"):
+    api_key = getEuropeanaKey()
+
+    if not api_key:
+        print("No Europeana API key provided.")
         return None
+
+    # Europeana search URL with query as 'Paris'
+    url = f"https://api.europeana.eu/record/v2/search.json?query={urllib.parse.quote(query)}&wskey={api_key}&rows=10&start=1&lang=en&fl=title,creator,year"
+
+    try:
+        print(f"Making API request to: {url}")
+        with urllib.request.urlopen(url) as response:
+            data = response.read().decode("utf-8")
+            print(f"Raw Response Data: {data}")
+            json_data = json.loads(data)
+            return json_data
+    except Exception as e:
+        print(f"Error in searchEuro: {e}")
+        return None
+
 #---Sports Functions---#
 
 #returns list of dictionaries containing information on ended soccer games

@@ -51,23 +51,23 @@ p01
         </form>
     
         {% if results %}
-            <h2>Results for "{{ request.args.get('query', '1500-2000') }}"</h2>
-            <ul>
-                {% for item in results['items'] %}
-                    <li>
-                        <strong>{{ item.get('title', 'No title') }}</strong><br>
-                        Creator: {{ item.get('creator', 'Unknown') }}<br>
-                        Date: {{ item.get('date', 'Unknown') }}<br>
-                        <a href="{{ item.get('link', '#') }}" target="_blank">View more</a><br><br>
-                        <img src="{{ item.get('thumbnail', '#') }}" alt="Image" width="100"><br><br>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% elif error %}
-            <p style="color: red;">{{ error }}</p>
-        {% else %}
-            <p>No results to display.</p>
-        {% endif %}
+        <h2>Results for "{{ request.args.get('query', '1500-2000') }}"</h2>
+        <ul>
+            {% for item in results['items'] %}
+                <li>
+                    <strong>Title:</strong> {{ item.get('dcTitleLangAware', ['No title'])[0] }}<br>
+                    <strong>Creator:</strong> {{ item.get('dataProvider', ['Unknown'])[0] }}<br>
+                    <strong>Origin:</strong> {{ item.get('dcLanguageLangAware', {'def': ['Unknown']})['def'][0] }}<br>
+                    <strong>Country:</strong> {{ item.get('country', ['Unknown'])[0] }}<br>
+                    <a href="{{ item.get('edmIsShownAt', ['#'])[0] }}" target="_blank">View more</a><br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% else %}
+        <p>No results to display.</p>
+    {% endif %}
 </body>
 
 </html>
