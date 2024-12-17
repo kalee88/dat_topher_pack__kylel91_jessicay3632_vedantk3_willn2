@@ -8,7 +8,12 @@ def events():
 
 @app.route("/arts")
 def arts():
-    return render_template("arts.html")
+    query = request.args.get('query', default='1500-2000', type=str)
+    results = searchEuro(query)
+    if results:
+        return render_template('arts.html', results=results)
+    else:
+        return render_template('arts.html', results=None, error="No results found or there was an error.")
 
 @app.route("/sports")
 def sports():

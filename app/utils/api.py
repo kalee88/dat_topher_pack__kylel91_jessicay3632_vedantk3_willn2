@@ -44,6 +44,7 @@ def searchEuro(query = '1500-2000'):
         with urllib.request.urlopen(url) as response:
             data = response.read().decode("utf-8")
             json_data = json.loads(data)
+            print(data) 
             return json_data
     except Exception as e:
         print(f"Error : {e}")
