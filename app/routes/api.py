@@ -37,4 +37,16 @@ def sportGames(id):
 
 @app.route("/weather")
 def weather():
-    return render_template("weather.html")
+    weather_data = getWeatherResponse()
+    data = parseForecast(weather_data)
+    img = data['icon']
+    day = data['isDaytime']
+    windSpeed = data['windSpeed']
+
+    compass = {'N' : "North", 'S' : 'South', 'E' : 'East', 'W' : 'West'}
+
+    windDirection = compass[data['windDirection']]
+    description = data['detailedForecast']
+    rainChance = data['probabilityOfPrecipitation']
+    temp = data['temperature']
+    return render_template("weather.html", temp = temp, img=img, day = day, windSpeed = windSpeed, windDirection=windDirection, description = description, rainChance = rainChance)

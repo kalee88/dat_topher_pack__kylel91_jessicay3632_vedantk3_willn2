@@ -55,7 +55,7 @@ p01
         <ul>
             {% for item in results['items'] %}
                 <li>
-                    <strong>Title:</strong> {{ item.get('dcTitleLangAware', ['No title'])[0] }}<br>
+                    <strong>Title:</strong> {{ item['dcTitleLangAware'].values() | first | first }}<br>
                     <strong>Creator:</strong> {{ item.get('dataProvider', ['Unknown'])[0] }}<br>
                     <strong>Origin:</strong> {{ item.get('dcLanguageLangAware', {'def': ['Unknown']})['def'][0] }}<br>
                     <strong>Country:</strong> {{ item.get('country', ['Unknown'])[0] }}<br>

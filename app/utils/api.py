@@ -65,8 +65,11 @@ def searchEuro(query="Paris"):
         print(f"Making API request to: {url}")
         with urllib.request.urlopen(url) as response:
             data = response.read().decode("utf-8")
-            print(f"Raw Response Data: {data}")
+            #print(f"Raw Response Data: {data}")
             json_data = json.loads(data)
+            for i in json_data['items']:
+                #print(list(i['dcTitleLangAware'].values())[0][0])
+                break
             return json_data
     except Exception as e:
         print(f"Error in searchEuro: {e}")
@@ -179,6 +182,11 @@ def generate_sport_card(event):
             <span class="score">{home_team} {home_score} - {away_score} {away_team}</span>
         </p>
         {"<p>This event was cancelled.</p>" if cancelled else ""}
+        <form method="POST" action="/favorite">
+            <button type="submit" name="event" value="{event}">
+                &#9733;
+            </button>
+        </form>
     </div>
     """
     html += card_html
@@ -189,3 +197,36 @@ def generate_sport_card(event):
     """
     
     return html
+
+#---weather api ----
+def getWeatherResponse(latitude=40.7128, longitude=-74.006):
+    url = f"https://api.weather.gov/points/{latitude},{longitude}" 
+    request = urllib.request.Request(url)
+
+    try:
+        with urllib.request.urlopen(request) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            return data['properties']['forecast']
+    except urllib.error.HTTPError as e:
+        print(f"HTTP Error: {e.code}, {e.reason}")
+    except urllib.error.URLError as e:
+        print(f"URL Error: {e.reason}")
+def parseForecast(data):
+    request = urllib.request.Request(data)
+
+    try:
+        with urllib.request.urlopen(request) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            
+            period = data['properties']['periods'][0]
+            useful_fields = ['isDaytime', 'temperature', 'windSpeed', 'windDirection', "detailedForecast", 'icon']
+            limited_data = {}
+            for field in useful_fields:
+                limited_data[field] = period[field]
+            limited_data['probabilityOfPrecipitation'] = period['probabilityOfPrecipitation']['value']
+
+            return limited_data
+    except urllib.error.HTTPError as e:
+        print(f"HTTP Error: {e.code}, {e.reason}")
+    except urllib.error.URLError as e:
+        print(f"URL Error: {e.reason}")

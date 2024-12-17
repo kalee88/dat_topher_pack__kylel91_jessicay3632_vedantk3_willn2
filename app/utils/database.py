@@ -115,7 +115,7 @@ def create_favorite(user_id, content_type, metadata, created_at):
     if(not user_exists(user_id)):
         raise KeyError(f"Could not locate user with id: {user_id}")
     if(content_type not in valid_types):
-        raise KeyError(f"{contet_type} is not a valid content type")
+        raise KeyError(f"{content_type} is not a valid content type")
     else:
         db = sqlite3.connect(DB_FILE)
         try:

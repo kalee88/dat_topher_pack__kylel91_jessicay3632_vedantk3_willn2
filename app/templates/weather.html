@@ -21,8 +21,13 @@ p01
         <form action="/home.html" method="get">
             <button type="submit">Home</button>
         </form>
-    
-        <br>
+        <h1>Weather Report</h1>
+        <img src="{{ img }}" width = 300>
+        <p> Time of Day {{ "Daytime" if day else "Nighttime" }}</p>
+        <p>Wind: {{ windSpeed }} {{ windDirection }}</p>
+        <p>Chance of Rain: {{ rainChance }}%</p>
+        <p>Temperature (Fahrenheit): {{ temp }}</p>
+        <p>Forecast: {{ description }}</p>
      </div>
 </body>
 
