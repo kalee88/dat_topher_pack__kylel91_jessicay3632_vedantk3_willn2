@@ -12,8 +12,131 @@ p01
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
     <title>    </title>
+    <style>
+            .subnav-hero-section {
+    text-align: center;
+    background: #1779ba;
+    background-size: cover;
+    position: relative;
+    overflow: visible;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 300px;
+    }
+
+    .subnav-hero-section .subnav-hero-headline {
+    color: #fefefe;
+    }
+
+    .subnav-hero-subnav {
+    float: none;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    bottom: 0;
+    width: 100%;
+    }
+
+    .subnav-hero-subnav li {
+    float: none;
+    display: inline-block;
+    }
+
+    .subnav-hero-subnav li a {
+    padding: 0.9rem 1rem;
+    font-size: 0.75rem;
+    color: #fefefe;
+    text-transform: uppercase;
+    display: block;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.35s ease-in-out;
+    }
+
+    .subnav-hero-subnav li a.is-active {
+    background: rgba(254, 254, 254, 0.15);
+    }
+
+    .subnav-hero-subnav li a:hover {
+    background: rgba(254, 254, 254, 0.15);
+    }
+
+/* Main Content */
+.main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1, h3 {
+    color: #1779ba;
+    margin-bottom: 1rem;
+}
+
+/* Forms */
+form {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+form button {
+    background-color: #1779ba;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+form button:hover {
+    background-color: #125d8a;
+}
+    </style>
+        <!--Navbar-->
+  <nav class="scrollhide-nav">
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">Topher's Tea by Dat Topher Pack</li>
+          <li>
+            <ul class="menu horizontal">
+              <li><a href="/">Home</a></li>
+              <li><a href="/events">Events</a></li>
+              <li><a href="/weather">Weather</a></li>
+              <li><a href="/sports">Sports</a></li>
+              <li><a href="/arts">Arts</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </head>
 
 <body>
@@ -28,23 +151,29 @@ p01
     <div class='main'>
 
         <form action="/signup" method="get">
-            <label>Don't have an account? Sign up:</label>
+            <label>
+            <h3>Don't have an account? Sign up:</h3>
             <button type="submit">Sign Up</button>
+            </label>
         </form>
 
         <br>
 
 
         <form action="/login" method="get">
-            <label>Have an account?</label>
+            <label>
+            <h3>Have an account?</h3>
             <button type="submit">Log in</button>
+            </label>
         </form>
 
         <br>
 
         <form action="/login" method="get">
-            <label>Want To Logout?</label>
+            <label>
+            <h3>Want to Logout?</h3>
             <button type="submit">Log Out</button>
+            </label>
         </form>
 
         <br>
@@ -54,7 +183,7 @@ p01
 
         <br>
         <form action="/weather" method="get">
-            <button type="submit">Events</button>
+            <button type="submit">Weather</button>
         </form>
 
         <br>
@@ -68,6 +197,8 @@ p01
         <form action="/arts" method="get">
             <button type="submit">Art</button>
         </form>
+
+        
 
         <br>
      </div>
